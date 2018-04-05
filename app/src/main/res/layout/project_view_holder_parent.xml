@@ -33,5 +33,4 @@
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ic_drop_down" />
 
-
 </RelativeLayout>

@@ -11,7 +11,6 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import nekono.inno.lifetracker.expandableview.DividerItemDecoration;
 import nekono.inno.lifetracker.expandableview.Project;
 import nekono.inno.lifetracker.expandableview.Task;
 import nekono.inno.lifetracker.expandableview.TasksExpandableAdapter;
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         tasksExpandableAdapter.setParentAndIconExpandOnClick(true);
 
         recyclerView.setAdapter(tasksExpandableAdapter);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), R.drawable.vertical_divider);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+
     }
 }
