@@ -4,13 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nekono.inno.lifetracker.MainActivity"
-    android:padding="20dp">
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context="nekono.inno.lifetracker.tasks.MainActivity"
+    >
+
+    <fragment
+        android:id="@+id/fragment_timer_place"
+        android:name="nekono.inno.lifetracker.tasks.TimerFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/tasksRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/tasksRecyclerView"/>
+        android:layout_below="@+id/fragment_timer_place"
+        android:layout_margin="20dp"/>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/right_labels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        fab:fab_addButtonColorNormal="@color/colorAccent"
+        fab:fab_addButtonColorPressed="@color/color_pressed"
+        fab:fab_addButtonPlusIconColor="@android:color/white"
+        fab:fab_labelStyle="@style/menu_labels_style"
+        fab:fab_labelsPosition="right">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorAccent"
+            fab:fab_colorPressed="@color/color_pressed"
+            fab:fab_icon="@drawable/ic_start"
+            fab:fab_size="mini" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorAccent"
+            fab:fab_colorPressed="@color/color_pressed"
+
+            fab:fab_icon="@drawable/ic_plus_sign"
+            fab:fab_size="mini" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
 </RelativeLayout>

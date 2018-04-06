@@ -1,5 +1,8 @@
-package nekono.inno.lifetracker;
+package nekono.inno.lifetracker.tasks;
 
+import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +14,7 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import nekono.inno.lifetracker.R;
 import nekono.inno.lifetracker.expandableview.Project;
 import nekono.inno.lifetracker.expandableview.Task;
 import nekono.inno.lifetracker.expandableview.TasksExpandableAdapter;
@@ -60,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         project2.setChildObjectList(tasks2);
 
-
-
         List<ParentObject> parentObjects = new ArrayList<>();
         parentObjects.add(project);
         parentObjects.add(project2);
@@ -73,5 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(tasksExpandableAdapter);
 
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        TimerFragment timerFragment = new TimerFragment();
+        fragmentTransaction.add(R.id.fragment_timer_place, timerFragment);
+        fragmentTransaction.commit();
     }
 }
