@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class All {
     ArrayList<Project> projects;
     ArrayList<Task> tasks;
-    ArrayList<Item> all;
+    ArrayList<Object> all;
 
     public All() {
         projects = new ArrayList<Project>();
         tasks = new ArrayList<Task>();
-        all = new ArrayList<Item>();
+        all = new ArrayList<Object>();
     }
 
     public void addProject(Project project) {
@@ -21,7 +21,7 @@ public class All {
         all.add(task);
     }
 
-    public void addItem(Item item) {
+    public void addItem(Object item) {
         all.add(item);
     }
 
@@ -33,7 +33,7 @@ public class All {
         return projects;
     }
 
-    public ArrayList<Item> getAllItems() {
+    public ArrayList<Object> getAllItems() {
         return all;
     }
 }

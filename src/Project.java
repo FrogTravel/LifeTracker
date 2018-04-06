@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Project implements Item {
+public class Project {
     String name;
     ArrayList<Task> tasks;
 

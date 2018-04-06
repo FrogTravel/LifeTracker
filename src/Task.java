@@ -1,4 +1,4 @@
-public class Task implements Item {
+public class Task {
     String name;
     String category;
     String state;
