@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class All {
+public class Model {
     ArrayList<Project> projects;
     ArrayList<Task> tasks;
     ArrayList<Object> all;
 
-    public All() {
+    public Model() {
         projects = new ArrayList<Project>();
         tasks = new ArrayList<Task>();
         all = new ArrayList<Object>();
