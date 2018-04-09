@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 import java.security.Policy;
 
-public class Task extends SugarRecord<Task> {
+public class Task extends SugarRecord {
 
     String name;
     String category;

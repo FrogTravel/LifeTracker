@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Project extends SugarRecord<Project> {
+public class Project extends SugarRecord {
     String name;
 
     public Project(){
