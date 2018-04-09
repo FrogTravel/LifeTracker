@@ -1,16 +1,31 @@
-public class Task {
+package nekono.inno.lifetracker.model;
+
+import com.orm.SugarRecord;
+
+import java.security.Policy;
+
+public class Task extends SugarRecord<Task> {
+
     String name;
     String category;
     String state;
-    String project;
     String comments;
+    Project project = null;
 
-    public Task(String name, String category, String state, String project, String comments) {
+    public Project getProject() {
+        return project;
+    }
+
+    public Task(){
+
+    }
+
+    public Task(String name, String category, String state, String comments) {
         this.name = name;
         this.category = category;
         this.state = state;
-        this.project = project;
         this.comments = comments;
+        save();
     }
 
     public String getName() {
@@ -25,31 +40,33 @@ public class Task {
         return state;
     }
 
-    public String getProject() {
-        return project;
-    }
-
     public String getComments() {
         return comments;
     }
 
+    public void setProject(Project project){
+        this.project = project;
+        save();
+    }
+
     public void setName(String name) {
         this.name = name;
+        save();
     }
 
     public void setCategory(String category) {
         this.category = category;
+        save();
     }
 
     public void setState(String state) {
         this.state = state;
+        save();
     }
 
-    public void setProject(String project) {
-        this.project = project;
-    }
 
     public void setComments(String comments) {
         this.comments = comments;
+        save();
     }
 }
