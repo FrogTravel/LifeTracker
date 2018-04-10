@@ -2,7 +2,8 @@ package nekono.inno.lifetracker.model;
 
 import com.orm.SugarRecord;
 
-import java.security.Policy;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Task extends SugarRecord {
 
@@ -10,22 +11,64 @@ public class Task extends SugarRecord {
     String category;
     String state;
     String comments;
+    String dateStarted;
+    String dateCompleted;
+    SimpleDateFormat df;
+    String timeElapsed;
     Project project = null;
+
+    public Task(){
+        df = new SimpleDateFormat("dd-MM-yyyy");
+    }
+
+    public Task(String name, String category, String state, String comments, Date started, Date completed, Date timeElapsed) {
+        this.name = name;
+        this.category = category;
+        this.state = state;
+        this.comments = comments;
+        df = new SimpleDateFormat("dd-MM-yyyy");
+        this.dateCompleted = df.format(completed);
+        this.timeElapsed = timeElapsed.toString();
+        this.dateStarted = df.format(started);
+        save();
+    }
+
+    public Date getDateStarted() {
+        try {
+            return df.parse(dateCompleted);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void setDateStarted(Date dateStarted) {
+        this.dateStarted = df.format(dateStarted);
+    }
+
+    public Date getDateCompleted() {
+        try {
+            return df.parse(dateCompleted);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void setDateCompleted(Date dateCompleted) {
+        this.dateCompleted = df.format(dateCompleted);
+    }
 
     public Project getProject() {
         return project;
     }
 
-    public Task(){
-
+    public Date getTimeElapsed() {
+        return new Date(timeElapsed);
     }
 
-    public Task(String name, String category, String state, String comments) {
-        this.name = name;
-        this.category = category;
-        this.state = state;
-        this.comments = comments;
-        save();
+    public void setTimeElapsed(Date timeElapsed) {
+        this.timeElapsed = timeElapsed.toString();
     }
 
     public String getName() {
@@ -63,7 +106,6 @@ public class Task extends SugarRecord {
         this.state = state;
         save();
     }
-
 
     public void setComments(String comments) {
         this.comments = comments;
