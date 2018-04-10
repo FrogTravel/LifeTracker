@@ -1,5 +1,4 @@
 package nekono.inno.lifetracker.model;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Model {

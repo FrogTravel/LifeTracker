@@ -2,29 +2,29 @@ package nekono.inno.lifetracker.model;
 
 import com.orm.SugarRecord;
 
-import java.security.Policy;
+import java.io.Serializable;
 
-public class Task extends SugarRecord {
+public class Task extends SugarRecord implements Serializable{
 
     String name;
     String category;
     String state;
-    String comments;
+    String comment;
     Project project = null;
 
     public Project getProject() {
         return project;
     }
 
-    public Task(){
+    public Task() {
 
     }
 
-    public Task(String name, String category, String state, String comments) {
+    public Task(String name, String category, String state, String comment) {
         this.name = name;
         this.category = category;
         this.state = state;
-        this.comments = comments;
+        this.comment = comment;
         save();
     }
 
@@ -40,11 +40,11 @@ public class Task extends SugarRecord {
         return state;
     }
 
-    public String getComments() {
-        return comments;
+    public String getComment() {
+        return comment;
     }
 
-    public void setProject(Project project){
+    public void setProject(Project project) {
         this.project = project;
         save();
     }
@@ -65,8 +65,8 @@ public class Task extends SugarRecord {
     }
 
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setComment(String comment) {
+        this.comment = comment;
         save();
     }
 }

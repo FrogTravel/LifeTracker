@@ -1,4 +1,5 @@
 package nekono.inno.lifetracker.model;
+
 import com.orm.SugarRecord;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 public class Project extends SugarRecord {
     String name;
 
-    public Project(){
+    public Project() {
 
     }
 
@@ -21,7 +22,7 @@ public class Project extends SugarRecord {
     }
 
     public List<Task> getTasks() {
-        return Task.find(Task.class, "project = ?",Long.toString(this.getId()));
+        return Task.find(Task.class, "project = ?", Long.toString(this.getId()));
     }
 
     public void setName(String name) {

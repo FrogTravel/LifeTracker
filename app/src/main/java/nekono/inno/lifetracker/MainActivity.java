@@ -1,21 +1,33 @@
 package nekono.inno.lifetracker;
 
-import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.RecyclerView;
 
 import nekono.inno.lifetracker.model.Model;
-import nekono.inno.lifetracker.model.Task;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView tasksRecycler;
+    private TasksAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Task task = new Task("task1", "Category1", "State1", "comments");
         setContentView(R.layout.activity_main);
+
+        tasksRecycler = findViewById(R.id.tasks_recycler);
+
+
+        adapter = new TasksAdapter();
+
+        tasksRecycler.setAdapter(adapter);
+
         Model model = new Model();
-        Log.d("orm",Integer.toString(model.getTasks().size()));
+
+        adapter.tasks = model.getTasks();
+        adapter.notifyDataSetChanged();
     }
+
 }
