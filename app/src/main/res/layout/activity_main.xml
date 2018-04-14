@@ -9,10 +9,24 @@
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
 
+<<<<<<< HEAD
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="385dp"
+        android:layout_height="wrap_content"
+        android:background="@color/addButton"
+        android:text="ADD"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onClickk"/>
+=======
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tasks_recycler"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+>>>>>>> refs/remotes/origin/master
 
 </RelativeLayout>

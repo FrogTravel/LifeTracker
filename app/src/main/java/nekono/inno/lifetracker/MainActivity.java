@@ -1,10 +1,15 @@
 package nekono.inno.lifetracker;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+<<<<<<< HEAD
+import android.view.View;
+=======
 import android.support.v7.widget.RecyclerView;
 
 import nekono.inno.lifetracker.model.Model;
+>>>>>>> refs/remotes/origin/master
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,4 +35,11 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+<<<<<<< HEAD
+    public void onClickk(View view){
+        Intent intent = new Intent(this, EditTask.class);
+        startActivity(intent);
+    }
+=======
+>>>>>>> refs/remotes/origin/master
 }
