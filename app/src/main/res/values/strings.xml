@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">LifeTracker</string>
-    <string name="task_name">Task Name</string>
-    <string name="category">Category</string>
-    <string name="state">State</string>
+    <string-array name="states">
+        <item>Created</item>
+        <item>In progress</item>
+        <item>Paused</item>
+        <item>Finished</item>
+    </string-array>
+
 </resources>
