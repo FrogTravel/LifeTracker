@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nekono.inno.lifetracker.views.SimpleTaskView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:id="@+id/simple_task_title"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        tools:text="Read Tannenbaum" />
+
+    <TextView
+        android:id="@+id/simple_task_subtitle"
+        android:layout_below="@id/simple_task_title"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:textSize="14sp"
+        tools:text="4th Chapter" />
+
+    <ImageView
+        android:id="@+id/simple_task_icon"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_width="32dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <View
+        android:layout_below="@id/simple_task_subtitle"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray"/>
+
+</nekono.inno.lifetracker.views.SimpleTaskView>
