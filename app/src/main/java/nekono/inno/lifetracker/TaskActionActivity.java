@@ -22,7 +22,7 @@ public class TaskActionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.task_action_view);
+        //setContentView(R.layout.task_action_view);
 
         Task task = (Task) getIntent().getSerializableExtra(TASK_EXTRA_KEY);
         Toast.makeText(this, task.getName(), Toast.LENGTH_SHORT).show();
