@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".TaskMenuActivity">
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <GridLayout
+            android:columnCount="2"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:rowCount="2">
+
+            <ImageView
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_height="92dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp"
+                android:layout_width="92dp"
+                app:srcCompat="@drawable/trash_button"
+
+                 />
+
+            <ImageView
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_height="92dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginBottom="24dp"
+                android:layout_width="92dp"
+                app:srcCompat="@drawable/mark_button"
+
+/>
+
+            <ImageView
+                android:layout_column="0"
+                android:layout_row="1"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_height="92dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_width="92dp"
+                app:srcCompat="@drawable/pencil_button"
+
+/>
+
+            <ImageView
+                android:layout_column="1"
+                android:layout_row="1"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_height="92dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_width="92dp"
+                app:srcCompat="@drawable/arrow_button"
+                 />
+
+        </GridLayout>
+
+    </RelativeLayout>
+    <!--<ImageButton-->
+        <!--android:id="@+id/forwardImageButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#0000"-->
+        <!--app:srcCompat="@drawable/arrow_button"-->
+        <!--android:paddingLeft="220dp"-->
+        <!--android:paddingTop="240dp" />-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/deleteImageButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#0000"-->
+        <!--app:srcCompat="@drawable/trash_button"-->
+        <!--android:paddingLeft="60dp"-->
+        <!--android:paddingTop="80dp"/>-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/markImageButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#0000"-->
+        <!--app:srcCompat="@drawable/mark_button"-->
+        <!--android:paddingLeft="220dp"-->
+        <!--android:paddingTop="80dp"/>-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/editImageButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#0000"-->
+        <!--app:srcCompat="@drawable/pencil_button"-->
+        <!--android:paddingLeft="60dp"-->
+        <!--android:paddingTop="240dp" />-->
+</android.support.constraint.ConstraintLayout>
+

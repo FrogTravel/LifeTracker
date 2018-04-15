@@ -26,11 +26,9 @@
 
         <activity android:name=".EditTaskActivity"/>
 
-        <meta-data android:name="DATABASE" android:value="life_tracker.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
 
-
+        <activity android:name=".TaskMenuActivity" />
+        <activity android:name=".MainMenuActivity" />
     </application>
 
 </manifest>
