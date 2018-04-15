@@ -8,13 +8,13 @@ import android.widget.Toast;
 import nekono.inno.lifetracker.model.Project;
 import nekono.inno.lifetracker.model.Task;
 
-public class EditTaskPresenter implements NewEditTaskInterface.Presenter {
+public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
 
     private NewEditTaskInterface.View editTaskView;
     private Task task = new Task();
     private Project newProject;
 
-    public EditTaskPresenter(NewEditTaskInterface.View editTaskView) {
+    public NewTaskPresenter(NewEditTaskInterface.View editTaskView) {
         this.editTaskView = editTaskView;
     }
 

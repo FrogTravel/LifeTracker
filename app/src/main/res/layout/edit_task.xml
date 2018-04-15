@@ -5,118 +5,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context="nekono.inno.lifetracker.MainActivity">
+    tools:context="nekono.inno.lifetracker.NewTaskActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <EditText
         android:id="@+id/taskName"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:text="Task Name"
+        android:hint="Task Name"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/category"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Category"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/taskName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/taskName"
         app:layout_constraintTop_toBottomOf="@+id/taskName" />
 
     <Spinner
         android:id="@+id/states"
-        android:layout_width="366dp"
-        android:layout_height="26dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="25dp"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:entries="@array/states"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/category"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="@+id/category"
         app:layout_constraintTop_toBottomOf="@+id/category" />
 
-    <View
-        android:id="@+id/underline"
-        android:layout_width="345dp"
-        android:layout_height="2dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/states" />
 
     <EditText
         android:id="@+id/project"
         android:layout_width="352dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Project"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/underline" />
+        android:hint="Project"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/category"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/category"
+        app:layout_constraintTop_toBottomOf="@+id/category" />
 
     <EditText
         android:id="@+id/comments"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
+        android:hint="Comments"
         android:inputType="textMultiLine"
-        android:text="Comments"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintEnd_toEndOf="@+id/project"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/project"
         app:layout_constraintTop_toBottomOf="@+id/project" />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="385dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:background="@color/addButton"
         android:text="ADD"
+        android:clickable="true"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comments"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/playButton"
-        android:layout_width="111dp"
-        android:layout_height="90dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="288dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="134dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:clickable="true"
-        app:backgroundTint="#f0e4d4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/comments"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintStart_toStartOf="@+id/comments"
         app:layout_constraintTop_toBottomOf="@+id/comments"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_play_icon" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/start_icon" />
 
 
 </android.support.constraint.ConstraintLayout>
