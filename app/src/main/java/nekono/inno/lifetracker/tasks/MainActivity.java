@@ -1,32 +1,23 @@
 package nekono.inno.lifetracker.tasks;
 
-import android.app.FragmentManager;
-import android.support.v4.app.Fragment;
+
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 
+
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import nekono.inno.lifetracker.R;
-import nekono.inno.lifetracker.expandableview.Project;
-import nekono.inno.lifetracker.expandableview.Task;
 import nekono.inno.lifetracker.expandableview.TasksExpandableAdapter;
-
 
 /**
  * site: https://www.bignerdranch.com/blog/expand-a-recyclerview-in-four-steps/?utm_source=Android+Weekly&utm_campaign=8f0cc3ff1f-Android_Weekly_165&utm_medium=email&utm_term=0_4eb677ad19-8f0cc3ff1f-337834121

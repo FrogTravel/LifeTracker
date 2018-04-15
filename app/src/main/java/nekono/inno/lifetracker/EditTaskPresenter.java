@@ -36,8 +36,8 @@ public class EditTaskPresenter implements NewEditTaskInterface.Presenter {
         task.setCategory(category.getText().toString());
         newProject = new Project(project.getText().toString());
         task.setProject(newProject);
-        task.setComment(comments.getText().toString());
-        Toast.makeText(context, task.getName() + " " + task.getCategory() + " " + task.getState() + " " + task.getProject().getName() + " " + task.getComment() + "created!",
+        task.setComments(comments.getText().toString());
+        Toast.makeText(context, task.getName() + " " + task.getCategory() + " " + task.getState() + " " + task.getProject().getName() + " " + task.getComments() + "created!",
                 Toast.LENGTH_LONG).show();
     }
 }
