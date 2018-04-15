@@ -11,9 +11,12 @@ import java.util.List;
 public interface Tasks {
     interface View{
         void showTasks(List<ParentObject> parentObjectList);
+        void showTimer();
+        void setTimerTime(long elapsedTime);
     }
 
     interface Presenter{
-
+        void addTask();
+        void startEmptyTask();
     }
 }

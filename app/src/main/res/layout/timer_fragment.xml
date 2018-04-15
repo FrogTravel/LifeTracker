@@ -5,7 +5,7 @@
     android:background="@color/colorPrimary">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/taskNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -14,10 +14,10 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/elapsedTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView"
+        android:layout_alignEnd="@+id/taskNameTextView"
         android:layout_centerVertical="true"
         android:text="TextView" />
 </RelativeLayout>

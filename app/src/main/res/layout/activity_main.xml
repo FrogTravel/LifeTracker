@@ -39,7 +39,8 @@
             fab:fab_colorNormal="@color/colorAccent"
             fab:fab_colorPressed="@color/color_pressed"
             fab:fab_icon="@drawable/ic_start"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"
+            android:onClick="onStart"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -48,7 +49,8 @@
             fab:fab_colorPressed="@color/color_pressed"
 
             fab:fab_icon="@drawable/ic_plus_sign"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"
+            android:onClick="onPlus"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
