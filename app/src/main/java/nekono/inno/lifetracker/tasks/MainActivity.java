@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,14 +47,32 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         timerFragment = new TimerFragment();
-       // fragmentTransaction.add(R.id.fragment_timer_place, timerFragment);
+        // fragmentTransaction.add(R.id.fragment_timer_place, timerFragment);
         fragmentTransaction
                 .add(R.id.fragment_timer_place, timerFragment)
                 .commit();
 
         View frag = findViewById(R.id.fragment_timer_place);
         frag.setVisibility(View.GONE);
+
+        presenter.start();
         //ButterKnife.bind(this);
+
+        View view = findViewById(R.id.stopButton);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onStopButton();
+            }
+        });
+
+        View button = findViewById(R.id.start_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.startEmptyTask();
+            }
+        });
     }
 
     @Override
@@ -63,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        TasksExpandableAdapter tasksExpandableAdapter = new TasksExpandableAdapter(this, parentObjectList);
+        TasksExpandableAdapter tasksExpandableAdapter = new TasksExpandableAdapter(this, presenter);
         tasksExpandableAdapter.setCustomParentAnimationViewId(R.id.parent_list_item_expand_arrow);
         tasksExpandableAdapter.setParentClickableViewAnimationDefaultDuration();
         tasksExpandableAdapter.setParentAndIconExpandOnClick(true);
@@ -74,6 +93,12 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     @Override
     public void showTimer() {
         View frag = findViewById(R.id.fragment_timer_place);
+        frag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onFragmentClick();
+            }
+        });
         frag.setVisibility(View.VISIBLE);
     }
 
@@ -82,11 +107,48 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         timerFragment.setTextElapsedTime(String.valueOf(elapsedTime));
     }
 
+    @Override
+    public void hideAddButton() {
+        View view = findViewById(R.id.right_labels);
+        view.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showStopButton() {
+        View view = findViewById(R.id.stopButton);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideStopButton() {
+        View view = findViewById(R.id.stopButton);
+        view.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideTimer() {
+        View frag = findViewById(R.id.fragment_timer_place);
+        frag.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showAddButton() {
+        View view = findViewById(R.id.right_labels);
+        view.setVisibility(View.VISIBLE);
+
+        View button = findViewById(R.id.start_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("StartButton", "1234512345");
+
+                presenter.startEmptyTask();
+            }
+        });
+    }
+
     public void onPlus(View view) {
         presenter.addTask();
     }
 
-    public void onStart(View view) {
-        presenter.startEmptyTask();
-    }
 }

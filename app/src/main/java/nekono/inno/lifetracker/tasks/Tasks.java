@@ -13,10 +13,22 @@ public interface Tasks {
         void showTasks(List<ParentObject> parentObjectList);
         void showTimer();
         void setTimerTime(long elapsedTime);
+        void hideAddButton();
+        void showStopButton();
+        void hideStopButton();
+        void hideTimer();
+        void showAddButton();
     }
 
     interface Presenter{
         void addTask();
         void startEmptyTask();
+        List<ParentObject> getParentItemList();
+        void longTaskClick();
+        void longProjectClick();
+        void start();
+        void onClickTask();
+        void onFragmentClick();
+        void onStopButton();
     }
 }

@@ -12,7 +12,8 @@
         android:id="@+id/fragment_timer_place"
         android:name="nekono.inno.lifetracker.tasks.TimerFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
@@ -34,13 +35,13 @@
         fab:fab_labelsPosition="right">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/start_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorAccent"
             fab:fab_colorPressed="@color/color_pressed"
             fab:fab_icon="@drawable/ic_start"
-            fab:fab_size="mini"
-            android:onClick="onStart"/>
+            fab:fab_size="mini"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -53,5 +54,14 @@
             android:onClick="onPlus"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/stopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/right_labels"
+        android:layout_below="@+id/fragment_timer_place"
+        android:clickable="true"
+        fab:srcCompat="@drawable/ic_done" />
 
 </RelativeLayout>

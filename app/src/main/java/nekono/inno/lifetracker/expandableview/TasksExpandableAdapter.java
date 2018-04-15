@@ -11,28 +11,30 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 import java.util.List;
 
 import nekono.inno.lifetracker.R;
+import nekono.inno.lifetracker.tasks.Tasks;
 
 /**
  * Created by ekaterina on 4/5/18.
  */
 
 public class TasksExpandableAdapter extends ExpandableRecyclerAdapter<ProjectParentViewHolder, TaskChildViewHolder> {
+    private Tasks.Presenter presenter;
 
-
-    public TasksExpandableAdapter(Context context, List<ParentObject> parentItemList) {
-        super(context, parentItemList);
+    public TasksExpandableAdapter(Context context, Tasks.Presenter presenter) {
+        super(context, presenter.getParentItemList());
+        this.presenter = presenter;
     }
 
     @Override
     public ProjectParentViewHolder onCreateParentViewHolder(ViewGroup viewGroup) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.project_view_holder_parent, viewGroup, false);
-        return new ProjectParentViewHolder(view);
+        return new ProjectParentViewHolder(view, presenter);
     }
 
     @Override
     public TaskChildViewHolder onCreateChildViewHolder(ViewGroup viewGroup) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.task_view_holder_child, viewGroup, false);
-        return new TaskChildViewHolder(view);
+        return new TaskChildViewHolder(view, presenter);
     }
 
     @Override
