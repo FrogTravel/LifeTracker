@@ -1,8 +1,8 @@
 package nekono.inno.lifetracker;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class EditTask extends Activity implements View.OnClickListener, EditTaskView, AdapterView.OnItemSelectedListener{
+public class EditTaskActivity extends AppCompatActivity implements View.OnClickListener, NewEditTaskInterface.View, AdapterView.OnItemSelectedListener {
 
     private TextView taskName;
     private TextView category;
@@ -21,7 +21,7 @@ public class EditTask extends Activity implements View.OnClickListener, EditTask
     private Button addButton;
     private FloatingActionButton playButton;
 
-    private EditTaskPresentInterface presenter;
+    private NewEditTaskInterface.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class EditTask extends Activity implements View.OnClickListener, EditTask
         playButton.setOnClickListener(this);
         states.setOnItemSelectedListener(this);
 
-        presenter = new EditTaskPresenter(this);
+        presenter = new NewTaskPresenter(this);
     }
 
     public void setItems() {
@@ -51,16 +51,21 @@ public class EditTask extends Activity implements View.OnClickListener, EditTask
 
     @Override
     public void onClick(View v) {
-        presenter.onButtonClicked();
+        switch (v.getId()) {
+            case R.id.addButton:
+                presenter.onAddPressed(taskName, category, project, comments, this);
+                break;
+            case R.id.playButton:
+                presenter.onPlayPressed(this);
+        }
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        presenter.onItemSelected(position);
+        presenter.onItemSelected(position, parent);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }

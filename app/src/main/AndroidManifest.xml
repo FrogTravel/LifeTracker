@@ -19,10 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditTask"/>
 
+        <activity android:name=".NewTaskActivity"/>
 
         <activity android:name=".TaskActionActivity"/>
+
+        <activity android:name=".EditTaskActivity"/>
 
         <meta-data android:name="DATABASE" android:value="life_tracker.db" />
         <meta-data android:name="VERSION" android:value="1" />

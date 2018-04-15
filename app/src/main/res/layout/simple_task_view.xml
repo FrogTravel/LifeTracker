@@ -30,7 +30,7 @@
         android:layout_height="32dp"
         android:layout_marginEnd="8dp"
         android:layout_width="32dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/play_icon" />
 
     <View
         android:layout_below="@id/simple_task_subtitle"
