@@ -19,16 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".EditTask"/>
-=======
+
 
         <activity android:name=".TaskActionActivity"/>
 
         <meta-data android:name="DATABASE" android:value="life_tracker.db" />
         <meta-data android:name="VERSION" android:value="1" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
->>>>>>> refs/remotes/origin/master
+
 
     </application>
 

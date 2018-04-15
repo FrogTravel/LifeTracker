@@ -15,7 +15,7 @@ public class TaskActionActivity extends AppCompatActivity {
 
     public static void startActivity(Context context, Task task) {
         Intent intent = new Intent(context, TaskActionActivity.class);
-        intent.putExtra(TASK_EXTRA_KEY, task);
+
         context.startActivity(intent);
     }
 

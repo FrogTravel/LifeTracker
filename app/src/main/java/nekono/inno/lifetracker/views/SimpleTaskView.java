@@ -47,6 +47,6 @@ public class SimpleTaskView extends RelativeLayout {
 
     public void populate(Task task) {
         title.setText(task.getName());
-        subTitle.setText(task.getComment());
+        subTitle.setText(task.getComments());
     }
 }

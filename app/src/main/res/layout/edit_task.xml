@@ -116,7 +116,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comments"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_play_icon" />
+        app:srcCompat="@drawable/ic_start" />
 
 
 </android.support.constraint.ConstraintLayout>

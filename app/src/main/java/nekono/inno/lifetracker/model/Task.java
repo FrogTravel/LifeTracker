@@ -2,36 +2,14 @@ package nekono.inno.lifetracker.model;
 
 import com.orm.SugarRecord;
 
-<<<<<<< HEAD
-import java.io.Serializable;
-=======
 import java.text.SimpleDateFormat;
 import java.util.Date;
->>>>>>> charts-activity
 
-public class Task extends SugarRecord implements Serializable{
+public class Task extends SugarRecord{
 
     String name;
     String category;
     String state;
-<<<<<<< HEAD
-    String comment;
-    Project project = null;
-
-    public Project getProject() {
-        return project;
-    }
-
-    public Task() {
-
-    }
-
-    public Task(String name, String category, String state, String comment) {
-        this.name = name;
-        this.category = category;
-        this.state = state;
-        this.comment = comment;
-=======
     String comments;
     String dateStarted;
     String dateCompleted;
@@ -52,7 +30,6 @@ public class Task extends SugarRecord implements Serializable{
         this.dateCompleted = df.format(completed);
         this.timeElapsed = timeElapsed.toString();
         this.dateStarted = df.format(started);
->>>>>>> charts-activity
         save();
     }
 
@@ -106,11 +83,11 @@ public class Task extends SugarRecord implements Serializable{
         return state;
     }
 
-    public String getComment() {
-        return comment;
+    public String getComments() {
+        return comments;
     }
 
-    public void setProject(Project project) {
+    public void setProject(Project project){
         this.project = project;
         save();
     }
@@ -130,14 +107,8 @@ public class Task extends SugarRecord implements Serializable{
         save();
     }
 
-<<<<<<< HEAD
-
-    public void setComment(String comment) {
-        this.comment = comment;
-=======
     public void setComments(String comments) {
         this.comments = comments;
->>>>>>> charts-activity
         save();
     }
 }
