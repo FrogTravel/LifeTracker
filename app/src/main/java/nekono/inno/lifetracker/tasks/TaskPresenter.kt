@@ -51,6 +51,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
 
     override fun longTaskClick(){
         Log.d("ClickTest", "Long task Click")
+        view.showMenuForTask()
     }
 
     override fun longProjectClick(){

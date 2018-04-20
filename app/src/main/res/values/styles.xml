@@ -25,4 +25,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MenuButton">
+        <item name="android:layout_width">@dimen/menu_icon_size</item>
+        <item name="android:layout_height">@dimen/menu_icon_size</item>
+    </style>
+
 </resources>
