@@ -19,6 +19,7 @@ public interface Tasks {
         void hideTimer();
         void showAddButton();
         void showAddTask();
+        void addNewTask(long time);
     }
 
     interface Presenter{

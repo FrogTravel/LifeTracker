@@ -81,6 +81,6 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
         timer.stop()
         isRunning = false
 
-        //TODO add this empty task
+        view.addNewTask(time)
     }
 }
