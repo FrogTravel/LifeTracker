@@ -30,6 +30,8 @@ public class NewTaskActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_task);
 
+        //getIntent().getLongExtra("NewTaskTime", )
+
         taskName = findViewById(R.id.taskName);
         category = findViewById(R.id.category);
         project = findViewById(R.id.project);

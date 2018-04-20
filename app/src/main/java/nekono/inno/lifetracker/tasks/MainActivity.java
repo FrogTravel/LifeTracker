@@ -150,4 +150,10 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         presenter.addTask();
     }
 
+    @Override
+    public void addNewTask(long time){
+        Intent intent = new Intent(this, NewTaskActivity.class);
+        intent.putExtra("NewTaskTime", time);
+        startActivity(intent);
+    }
 }
