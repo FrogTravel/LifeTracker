@@ -1,10 +1,11 @@
-package nekono.inno.lifetracker;
+package nekono.inno.lifetracker.edittask;
 
 import android.content.Context;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import nekono.inno.lifetracker.addtask.NewEditTaskInterface;
 import nekono.inno.lifetracker.model.Project;
 import nekono.inno.lifetracker.model.Task;
 

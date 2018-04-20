@@ -1,11 +1,12 @@
 package nekono.inno.lifetracker.model;
 
+import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Project extends SugarRecord {
+public class Project extends SugarRecord implements ParentObject {
     String name;
 
     public Project() {
@@ -36,5 +37,15 @@ public class Project extends SugarRecord {
 
     public boolean contains(Task task) {
         return getTasks().contains(task);
+    }
+
+    @Override
+    public List<Object> getChildObjectList() {
+        return (List<Object>) (Object) Task.find(Task.class, "project = ?", Long.toString(this.getId()));
+    }
+
+    @Override
+    public void setChildObjectList(List<Object> list) {
+        //TODO ???
     }
 }

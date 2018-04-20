@@ -1,4 +1,4 @@
-package nekono.inno.lifetracker;
+package nekono.inno.lifetracker.addtask;
 
 import android.content.Context;
 import android.widget.AdapterView;
@@ -9,6 +9,7 @@ public interface NewEditTaskInterface {
     interface View {
 
         void setItems();
+        void close();
     }
 
     interface Presenter {

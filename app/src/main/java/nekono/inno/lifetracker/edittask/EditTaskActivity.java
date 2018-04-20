@@ -1,4 +1,4 @@
-package nekono.inno.lifetracker;
+package nekono.inno.lifetracker.edittask;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import nekono.inno.lifetracker.R;
+import nekono.inno.lifetracker.addtask.NewEditTaskInterface;
+import nekono.inno.lifetracker.addtask.NewTaskPresenter;
 
 public class EditTaskActivity extends AppCompatActivity implements View.OnClickListener, NewEditTaskInterface.View, AdapterView.OnItemSelectedListener {
 
@@ -47,6 +51,11 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.states, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         states.setAdapter(adapter);
+    }
+
+    @Override
+    public void close() {
+        this.finish();
     }
 
     @Override

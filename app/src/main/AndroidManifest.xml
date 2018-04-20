@@ -20,11 +20,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NewTaskActivity"/>
+        <activity android:name=".addtask.NewTaskActivity"/>
 
         <activity android:name=".TaskActionActivity"/>
 
-        <activity android:name=".EditTaskActivity"/>
+        <activity android:name=".edittask.EditTaskActivity"/>
 
 
         <activity android:name=".TaskMenuActivity" />

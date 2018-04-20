@@ -11,6 +11,8 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 import java.util.List;
 
 import nekono.inno.lifetracker.R;
+import nekono.inno.lifetracker.model.Project;
+import nekono.inno.lifetracker.model.Task;
 import nekono.inno.lifetracker.tasks.Tasks;
 
 /**
@@ -41,7 +43,7 @@ public class TasksExpandableAdapter extends ExpandableRecyclerAdapter<ProjectPar
     public void onBindParentViewHolder(ProjectParentViewHolder projectParentViewHolder, int i, Object o) {
         Project project = (Project) o;
         projectParentViewHolder.titleTextView.setText(project.getName());
-        projectParentViewHolder.descriptionTextView.setText(project.getDescription());
+        projectParentViewHolder.descriptionTextView.setText("La la la");
     }
 
     @Override

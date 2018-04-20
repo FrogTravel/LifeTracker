@@ -1,4 +1,7 @@
 package nekono.inno.lifetracker.model;
+import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
@@ -10,7 +13,7 @@ public class Model {
     }
 
     private void update(){
-        projects = Project.listAll(Project.class);
+        projects =  Project.listAll(Project.class);
         tasks = Task.listAll(Task.class);
     }
 
@@ -22,5 +25,13 @@ public class Model {
     public List<Project> getProjects() {
         update();
         return projects;
+    }
+
+    public List<ParentObject> getParentObjectProject(){
+        List<ParentObject> temp = new ArrayList<>();
+
+        temp.addAll(temp);
+
+        return temp;
     }
 }

@@ -3,21 +3,21 @@ package nekono.inno.lifetracker.tasks
 import android.util.Log
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject
 import nekono.inno.lifetracker.CountUpTimer
-import nekono.inno.lifetracker.TaskHelperTemp
+import nekono.inno.lifetracker.model.Model
 
 /**
  * Created by ekaterina on 4/6/18.
  */
 
 class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
-    private val helper = TaskHelperTemp()
     private var isRunning = false
     private lateinit var timer: CountUpTimer
     private var time: Long = 0
+    private var model = Model()
 
     override fun start(){
         view.hideStopButton()
-        view.showTasks(helper.generateTasks())
+        view.showTasks(model.parentObjectProject)
         timer = object : CountUpTimer(1000) {
             override fun onTick(elapsedTime: Long) {
                 time += 1000
@@ -42,12 +42,12 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
     }
 
     override fun addTask() {
-        TODO("Alina's code call here")
+        view.showAddTask()
     }
 
     private fun toSeconds(time: Long) = time/1000
 
-    override fun getParentItemList(): List<ParentObject> = helper.generateTasks()
+    override fun getParentItemList(): List<ParentObject> = model.projects
 
     override fun longTaskClick(){
         Log.d("ClickTest", "Long task Click")

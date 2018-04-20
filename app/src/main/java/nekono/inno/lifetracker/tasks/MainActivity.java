@@ -1,6 +1,7 @@
 package nekono.inno.lifetracker.tasks;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import nekono.inno.lifetracker.addtask.NewTaskActivity;
 import nekono.inno.lifetracker.R;
 import nekono.inno.lifetracker.expandableview.TasksExpandableAdapter;
 
@@ -136,6 +138,12 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
                 presenter.startEmptyTask();
             }
         });
+    }
+
+    @Override
+    public void showAddTask() {
+        Intent intent = new Intent(this, NewTaskActivity.class);
+        startActivity(intent);
     }
 
     public void onPlus(View view) {

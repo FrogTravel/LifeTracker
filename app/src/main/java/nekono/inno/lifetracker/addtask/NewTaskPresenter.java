@@ -1,4 +1,4 @@
-package nekono.inno.lifetracker;
+package nekono.inno.lifetracker.addtask;
 
 import android.content.Context;
 import android.widget.AdapterView;
@@ -39,5 +39,6 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
         task.setComments(comments.getText().toString());
         Toast.makeText(context, task.getName() + " " + task.getCategory() + " " + task.getState() + " " + task.getProject().getName() + " " + task.getComments() + "created!",
                 Toast.LENGTH_LONG).show();
+        editTaskView.close();
     }
 }
