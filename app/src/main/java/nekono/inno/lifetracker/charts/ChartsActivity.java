@@ -1,8 +1,6 @@
-package nekono.inno.lifetracker;
+package nekono.inno.lifetracker.charts;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,12 +27,10 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import nekono.inno.lifetracker.R;
 import nekono.inno.lifetracker.model.Model;
 import nekono.inno.lifetracker.model.Task;
 
@@ -134,15 +130,7 @@ public class ChartsActivity extends AppCompatActivity {
                     rootView = inflater.inflate(R.layout.category_chart, container, false);
                     PieChart pieChart = rootView.findViewById(R.id.category_chart);
                     List<PieEntry> entries = new ArrayList<>();
-                    HashMap<String, Integer> dictionary = new HashMap<>();
-                    for (Task task :
-                            (new Model()).getTasks()) {
-                        if (dictionary.containsKey(task.getCategory())) {
-                            dictionary.put(task.getCategory(), dictionary.get(task.getCategory()) + 1);
-                        } else {
-                            dictionary.put(task.getCategory(), 1);
-                        }
-                    }
+                    HashMap<String, Integer> dictionary = ChartsPresenter.getTaskCountByCategory();
                     for (String key :
                             dictionary.keySet()) {
                         entries.add(new PieEntry(dictionary.get(key), key));
@@ -155,29 +143,17 @@ public class ChartsActivity extends AppCompatActivity {
                     rootView = inflater.inflate(R.layout.n_completed_chart, container, false);
                     BarChart completedChart = rootView.findViewById(R.id.completed_chart);
                     List<BarEntry> completedEntries = new ArrayList<>();
-                    HashMap<Date, Integer> completed = new HashMap<>();
-                    for (Task task :
-                            (new Model()).getTasks()) {
-                        if (completed.containsKey(task.getDateCompleted())) {
-                            completed.put(task.getDateCompleted(), completed.get(task.getDateCompleted()) + 1);
-                        } else {
-                            completed.put(task.getDateCompleted(), 1);
-                        }
-                    }
-                    final List<Date> keySet = new ArrayList<Date>(completed.keySet());
-                    Collections.sort(keySet, new Comparator<Date>() {
-                        public int compare(Date o1, Date o2) {
-                            return o1.compareTo(o2);
-                        }
-                    });
+                    HashMap<Integer, Integer> completed = ChartsPresenter.getTasksCompletedThisWeek();
+                    final List<Integer> keySet = new ArrayList<Integer>(completed.keySet());
                     for (int i = 0; i < keySet.size(); i++) {
                         completedEntries.add(new BarEntry(i, completed.get(keySet.get(i))));
                     }
+                    final String days[] = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
                     IAxisValueFormatter formatter = new IAxisValueFormatter() {
 
                         @Override
                         public String getFormattedValue(float value, AxisBase axis) {
-                            return keySet.get((int) value).toString();
+                            return days[keySet.get((int) value)];
                         }
 
                     };
@@ -190,8 +166,8 @@ public class ChartsActivity extends AppCompatActivity {
                     PieChart timeChart = rootView.findViewById(R.id.time_spent_chart);
                     List<PieEntry> timeEntries = new ArrayList<>();
                     for (Task task :
-                            (new Model()).getTasks()) {
-                        timeEntries.add(new PieEntry(task.getTimeElapsed().getTime(), task.getName()));
+                            Model.getTasks()) {
+                        timeEntries.add(new PieEntry(task.getTimeElapsed().getSeconds(), task.getName()));
                     }
                     PieData timeData = new PieData(new PieDataSet(timeEntries, "Time elapsed"));
                     timeChart.setData(timeData);
