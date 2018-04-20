@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
@@ -17,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import nekono.inno.lifetracker.ChartsActivity;
 import nekono.inno.lifetracker.addtask.NewTaskActivity;
 import nekono.inno.lifetracker.R;
 import nekono.inno.lifetracker.expandableview.TasksExpandableAdapter;
@@ -66,6 +69,18 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
                 presenter.startEmptyTask();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_charts, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        startActivity(new Intent(this, ChartsActivity.class));
+        return true;
     }
 
     @Override
