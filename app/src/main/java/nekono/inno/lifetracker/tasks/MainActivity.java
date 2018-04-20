@@ -171,4 +171,9 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         intent.putExtra("NewTaskTime", time);
         startActivity(intent);
     }
+
+    @Override
+    public void showMenuForTask(){
+
+    }
 }

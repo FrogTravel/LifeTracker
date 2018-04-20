@@ -20,6 +20,7 @@ public interface Tasks {
         void showAddButton();
         void showAddTask();
         void addNewTask(long time);
+        void showMenuForTask();
     }
 
     interface Presenter{
