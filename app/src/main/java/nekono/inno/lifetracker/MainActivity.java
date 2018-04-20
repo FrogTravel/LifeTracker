@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
         tasksRecycler = findViewById(R.id.tasks_recycler);
 
-
         adapter = new TasksAdapter();
 
         tasksRecycler.setAdapter(adapter);
