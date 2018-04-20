@@ -3,6 +3,7 @@ package nekono.inno.lifetracker.model;
 import com.orm.SugarRecord;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 
 public class Task extends SugarRecord{
@@ -14,21 +15,21 @@ public class Task extends SugarRecord{
     String dateStarted;
     String dateCompleted;
     SimpleDateFormat df;
-    String timeElapsed;
+    long timeElapsed;
     Project project = null;
 
     public Task(){
         df = new SimpleDateFormat("dd-MM-yyyy");
     }
 
-    public Task(String name, String category, String state, String comments, Date started, Date completed, Date timeElapsed) {
+    public Task(String name, String category, String state, String comments, Date started, Date completed, Duration timeElapsed) {
         this.name = name;
         this.category = category;
         this.state = state;
         this.comments = comments;
         df = new SimpleDateFormat("dd-MM-yyyy");
         this.dateCompleted = df.format(completed);
-        this.timeElapsed = timeElapsed.toString();
+        this.timeElapsed = timeElapsed.getSeconds();
         this.dateStarted = df.format(started);
         save();
     }
@@ -63,12 +64,12 @@ public class Task extends SugarRecord{
         return project;
     }
 
-    public Date getTimeElapsed() {
-        return new Date(timeElapsed);
+    public Duration getTimeElapsed() {
+        return Duration.ofSeconds(timeElapsed);
     }
 
-    public void setTimeElapsed(Date timeElapsed) {
-        this.timeElapsed = timeElapsed.toString();
+    public void setTimeElapsed(Duration timeElapsed) {
+        this.timeElapsed = timeElapsed.getSeconds();
     }
 
     public String getName() {

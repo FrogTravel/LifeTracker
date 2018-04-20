@@ -8,23 +8,12 @@ public class Model {
     private List<Project> projects;
     private List<Task> tasks;
 
-    public Model() {
-        update();
-    }
-
-    private void update(){
-        projects =  Project.listAll(Project.class);
-        tasks = Task.listAll(Task.class);
-    }
-
-    public List<Task> getTasks() {
-        update();
-        return tasks;
+    public static List<Task> getTasks() {
+        return Task.listAll(Task.class);
     }
 
     public List<Project> getProjects() {
-        update();
-        return projects;
+        return Project.listAll(Project.class);
     }
 
     public List<ParentObject> getParentObjectProject(){
