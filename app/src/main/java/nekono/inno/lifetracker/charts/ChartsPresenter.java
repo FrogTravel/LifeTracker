@@ -1,8 +1,6 @@
 package nekono.inno.lifetracker.charts;
 
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
-
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -48,10 +46,5 @@ public class ChartsPresenter {
         int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
         int targetYear = targetCalendar.get(Calendar.YEAR);
         return week == targetWeek && year == targetYear;
-    }
-
-    private static boolean compareDates(Date date1, Date date2) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        return sdf.format(date1).equals(sdf.format(date2));
     }
 }

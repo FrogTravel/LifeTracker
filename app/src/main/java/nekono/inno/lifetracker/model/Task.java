@@ -2,8 +2,9 @@ package nekono.inno.lifetracker.model;
 
 import com.orm.SugarRecord;
 
+import org.threeten.bp.Duration;
+
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
 public class Task extends SugarRecord{
