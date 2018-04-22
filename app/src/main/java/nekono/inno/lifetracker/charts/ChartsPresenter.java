@@ -24,14 +24,14 @@ public class ChartsPresenter {
     public static HashMap<Integer, Integer> getTasksCompletedThisWeek() {
         HashMap<Integer, Integer> completed = new HashMap<>();
         Calendar cal = Calendar.getInstance();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 1; i < 8; i++) {
             completed.put(i, 0);
         }
         for (Task task :
                 (new Model()).getTasks()) {
             if (isDateInCurrentWeek(task.getDateCompleted())) {
                 cal.setTime(task.getDateCompleted());
-                completed.put(cal.get(Calendar.DAY_OF_WEEK), completed.get(cal.get(Calendar.DAY_OF_WEEK)));
+                completed.put(cal.get(Calendar.DAY_OF_WEEK), completed.get(cal.get(Calendar.DAY_OF_WEEK)) + 1);
             }
         }
         return completed;
@@ -41,6 +41,7 @@ public class ChartsPresenter {
         Calendar currentCalendar = Calendar.getInstance();
         int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
         int year = currentCalendar.get(Calendar.YEAR);
+        Date currentDate = currentCalendar.getTime();
         Calendar targetCalendar = Calendar.getInstance();
         targetCalendar.setTime(date);
         int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);

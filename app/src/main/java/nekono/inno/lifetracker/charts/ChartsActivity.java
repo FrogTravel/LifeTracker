@@ -26,7 +26,12 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
+import org.threeten.bp.Duration;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,7 +60,14 @@ public class ChartsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
-
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2018, 3, 22);
+        Date date = calendar.getTime();
+        new Task("name1", "category1", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(1));
+        calendar.set(2018, 3, 22);
+        new Task("name2", "category1", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(2));
+        calendar.set(2018, 3, 24);
+        new Task("name3", "category2", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(3));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -145,6 +157,7 @@ public class ChartsActivity extends AppCompatActivity {
                     List<BarEntry> completedEntries = new ArrayList<>();
                     HashMap<Integer, Integer> completed = ChartsPresenter.getTasksCompletedThisWeek();
                     final List<Integer> keySet = new ArrayList<Integer>(completed.keySet());
+                    Collections.sort(keySet);
                     for (int i = 0; i < keySet.size(); i++) {
                         completedEntries.add(new BarEntry(i, completed.get(keySet.get(i))));
                     }
@@ -153,7 +166,7 @@ public class ChartsActivity extends AppCompatActivity {
 
                         @Override
                         public String getFormattedValue(float value, AxisBase axis) {
-                            return days[keySet.get((int) value)];
+                            return days[keySet.get((int) value) - 1];
                         }
 
                     };

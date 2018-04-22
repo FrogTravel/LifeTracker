@@ -13,8 +13,8 @@ public class Task extends SugarRecord{
     String category;
     String state;
     String comments;
-    String dateStarted;
-    String dateCompleted;
+    long dateStarted;
+    long dateCompleted;
     SimpleDateFormat df;
     long timeElapsed;
     Project project = null;
@@ -29,36 +29,26 @@ public class Task extends SugarRecord{
         this.state = state;
         this.comments = comments;
         df = new SimpleDateFormat("dd-MM-yyyy");
-        this.dateCompleted = df.format(completed);
+        this.dateCompleted = completed.getTime();
         this.timeElapsed = timeElapsed.getSeconds();
-        this.dateStarted = df.format(started);
+        this.dateStarted = started.getTime();
         save();
     }
 
     public Date getDateStarted() {
-        try {
-            return df.parse(dateCompleted);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return new Date(dateStarted);
     }
 
     public void setDateStarted(Date dateStarted) {
-        this.dateStarted = df.format(dateStarted);
+        this.dateStarted = dateStarted.getTime();
     }
 
     public Date getDateCompleted() {
-        try {
-            return df.parse(dateCompleted);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return new Date(dateCompleted);
     }
 
     public void setDateCompleted(Date dateCompleted) {
-        this.dateCompleted = df.format(dateCompleted);
+        this.dateCompleted = dateCompleted.getTime();
     }
 
     public Project getProject() {
