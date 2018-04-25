@@ -57,7 +57,12 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
             projects.get(projectIndex).addTask(task);
         }
         else {
-            task.setProject(new Project(project.getText().toString()));
+            if (project.getText().toString().equals("")) {
+                task.setProject(new Project("Untitled"));
+            }
+            else {
+                task.setProject(new Project(project.getText().toString()));
+            }
         }
         Toast.makeText(context, "Your task is created!", Toast.LENGTH_LONG).show();
         editTaskView.close();
