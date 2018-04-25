@@ -26,6 +26,14 @@ public class Model {
         return tasks;
     }
 
+    public List<String> getCategories() {
+        List<String> categories = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            categories.add(tasks.get(i).category);
+        }
+        return categories;
+    }
+
     public List<ParentObject> getParentObjectProject(){
         List<ParentObject> temp = new ArrayList<>();
 

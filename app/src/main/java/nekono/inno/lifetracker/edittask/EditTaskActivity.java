@@ -10,9 +10,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.List;
+
 import nekono.inno.lifetracker.R;
 import nekono.inno.lifetracker.addtask.NewEditTaskInterface;
 import nekono.inno.lifetracker.addtask.NewTaskPresenter;
+import nekono.inno.lifetracker.model.Model;
+import nekono.inno.lifetracker.model.Project;
+import nekono.inno.lifetracker.model.Task;
 
 public class EditTaskActivity extends AppCompatActivity implements View.OnClickListener, NewEditTaskInterface.View, AdapterView.OnItemSelectedListener {
 
@@ -28,6 +33,8 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
     private NewEditTaskInterface.Presenter presenter;
 
     private String taskName;
+    private long time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,16 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.edit_task);
 
         taskName = getIntent().getStringExtra("task_name");
+        time = getIntent().getLongExtra("time", 0);
+
+        Model model = new Model();
+        Task task = new Task();
+        List<Task> tasks = model.getTasks();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getName().equals(name)) {
+                task = tasks.get(i);
+            }
+        }
 
         name = findViewById(R.id.taskName);
         category = findViewById(R.id.category);
@@ -43,6 +60,11 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
         states = findViewById(R.id.states);
         addButton = findViewById(R.id.addButton);
         playButton = findViewById(R.id.playButton);
+
+        name.setText(taskName);
+        category.setText(task.getCategory());
+        project.setText(task.getProject().getName());
+        comments.setText(task.getComments());
 
         addButton.setOnClickListener(this);
         playButton.setOnClickListener(this);
@@ -66,7 +88,7 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addButton:
-                presenter.onAddPressed(name, category, project, comments, this, taskName);
+                presenter.onAddPressed(name, category, project, comments, this, taskName, time);
                 break;
             case R.id.playButton:
                 presenter.onPlayPressed(this);
