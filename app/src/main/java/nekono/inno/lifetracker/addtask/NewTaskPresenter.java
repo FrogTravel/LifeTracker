@@ -27,9 +27,9 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
 
     @Override
     public void onPlayPressed(Context context) {
+        editTaskView.startTimer();
         Toast.makeText(context, "Timer is started!",
                 Toast.LENGTH_LONG).show();
-        //TODO start timer
     }
 
     @Override
