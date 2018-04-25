@@ -25,6 +25,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.threeten.bp.Duration;
 
@@ -137,6 +138,17 @@ public class ChartsActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView;
+            ArrayList<Integer> colors = new ArrayList<Integer>();
+            for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                colors.add(c);
+            for (int c : ColorTemplate.JOYFUL_COLORS)
+                colors.add(c);
+            for (int c : ColorTemplate.COLORFUL_COLORS)
+                colors.add(c);
+            for (int c : ColorTemplate.LIBERTY_COLORS)
+                colors.add(c);
+            for (int c : ColorTemplate.PASTEL_COLORS)
+                colors.add(c);
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 0:
                     rootView = inflater.inflate(R.layout.category_chart, container, false);
@@ -147,7 +159,11 @@ public class ChartsActivity extends AppCompatActivity {
                             dictionary.keySet()) {
                         entries.add(new PieEntry(dictionary.get(key), key));
                     }
-                    PieData pieData = new PieData(new PieDataSet(entries, "Categories"));
+                    PieDataSet pieDataSet = new PieDataSet(entries, "Categories");
+                    pieDataSet.setColors(colors);
+                    PieData pieData = new PieData(pieDataSet);
+                    //pieData.setValueFormatter(new PercentFormatter());
+                    pieData.setValueTextSize(11f);
                     pieChart.setData(pieData);
                     pieChart.invalidate();
                     break;
@@ -182,7 +198,11 @@ public class ChartsActivity extends AppCompatActivity {
                             Model.getTasks()) {
                         timeEntries.add(new PieEntry(task.getTimeElapsed().getSeconds(), task.getName()));
                     }
-                    PieData timeData = new PieData(new PieDataSet(timeEntries, "Time elapsed"));
+                    PieDataSet timeDataSet = new PieDataSet(timeEntries, "Time elapsed");
+                    timeDataSet.setColors(colors);
+                    PieData timeData = new PieData(timeDataSet);
+                    //timeData.setValueFormatter(new PercentFormatter());
+                    timeData.setValueTextSize(11f);
                     timeChart.setData(timeData);
                     timeChart.invalidate();
                     break;
