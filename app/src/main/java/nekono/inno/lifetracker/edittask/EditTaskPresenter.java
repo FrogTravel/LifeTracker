@@ -5,6 +5,8 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.threeten.bp.Duration;
+
 import java.util.List;
 
 import nekono.inno.lifetracker.addtask.NewEditTaskInterface;
@@ -35,7 +37,7 @@ public class EditTaskPresenter implements NewEditTaskInterface.Presenter {
     }
 
     @Override
-    public void onAddPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name) {
+    public void onAddPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time) {
         Model model = new Model();
         List<Task> tasks = model.getTasks();
         List<Project> projects = model.getProjects();
@@ -60,6 +62,7 @@ public class EditTaskPresenter implements NewEditTaskInterface.Presenter {
         }
         task.setCategory(category.getText().toString());
         task.setComments(comments.getText().toString());
+        task.setTimeElapsed(Duration.ofMillis(time));
         Toast.makeText(context, "Your task is updated!", Toast.LENGTH_LONG).show();
         editTaskView.close();
     }

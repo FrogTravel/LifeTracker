@@ -18,6 +18,6 @@ public interface NewEditTaskInterface {
 
         void onItemSelected(int position, AdapterView<?> parent);
 
-        void onAddPressed(TextView name, TextView category, TextView project, TextView comments, Context context, String taskName);
+        void onAddPressed(TextView name, TextView category, TextView project, TextView comments, Context context, String taskName, long time);
     }
 }

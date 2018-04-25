@@ -23,12 +23,16 @@ public class NewTaskActivity extends AppCompatActivity implements View.OnClickLi
     private Button addButton;
     private FloatingActionButton playButton;
 
+    private long time;
+
     private NewEditTaskInterface.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_task);
+
+        time = getIntent().getLongExtra("time", 0);
 
         taskName = findViewById(R.id.taskName);
         category = findViewById(R.id.category);
@@ -60,7 +64,7 @@ public class NewTaskActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addButton:
-                presenter.onAddPressed(taskName, category, project, comments, this, "");
+                presenter.onAddPressed(taskName, category, project, comments, this, "", time);
                 break;
             case R.id.playButton:
                 presenter.onPlayPressed(this);

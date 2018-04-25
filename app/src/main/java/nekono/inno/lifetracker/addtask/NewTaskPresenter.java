@@ -19,7 +19,6 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
 
     private NewEditTaskInterface.View editTaskView;
     private Task task = new Task();
-    private Project newProject;
     private String state;
 
     public NewTaskPresenter(NewEditTaskInterface.View editTaskView) {
@@ -39,9 +38,9 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
     }
 
     @Override
-    public void onAddPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name) {
+    public void onAddPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time) {
         Date finished = new Date(0);
-        Duration duration = Duration.ofSeconds(0);
+        Duration duration = Duration.ofMillis(time);
         Model model = new Model();
         List<Project> projects = model.getProjects();
         int projectIndex = getProjectIndex(project.getText().toString(), projects);
