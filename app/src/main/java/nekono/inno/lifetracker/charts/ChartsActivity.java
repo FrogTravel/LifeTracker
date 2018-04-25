@@ -68,7 +68,7 @@ public class ChartsActivity extends AppCompatActivity {
         calendar.set(2018, 3, 22);
         new Task("Running", "Sport", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(2));
         calendar.set(2018, 3, 24);
-        new Task("Watching Game of Thrones", "Entertainment", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(3));
+        new Task("Cooking", "Other", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(3));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
