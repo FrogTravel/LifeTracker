@@ -27,11 +27,14 @@
         <activity android:name=".edittask.EditTaskActivity"/>
 
 
-        <activity android:name=".menus.TaskMenuActivity"/>
+        <activity android:name=".menus.TaskMenuActivity" android:theme="@style/Theme.Transparent"/>
         <activity android:name=".MainMenuActivity" />
+
         <activity android:name=".charts.ChartsActivity"
             android:label="@string/title_activity_charts"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".menus.CategoryActivity"/>
     </application>
 
 </manifest>

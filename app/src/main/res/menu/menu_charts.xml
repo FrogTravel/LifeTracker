@@ -8,4 +8,12 @@
         android:icon="@drawable/ic_graphs"
         android:title="Graph"
         app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/action_category"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_category"
+        android:title="Graph"
+        app:showAsAction="always" />
 </menu>

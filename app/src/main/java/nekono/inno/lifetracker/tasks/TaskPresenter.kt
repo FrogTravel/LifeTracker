@@ -46,16 +46,16 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
     }
 
     override fun addTask() {
-        view.showAddTask()
+        view.showAddTask(time)
     }
 
     private fun toSeconds(time: Long) = time/1000
 
     override fun getParentItemList(): List<ParentObject> = model.projects
 
-    override fun longTaskClick(){
+    override fun longTaskClick(taskName: String){
         Log.d("ClickTest", "Long task Click")
-        view.showMenuForTask()
+        view.showMenuForTask(taskName, time)
     }
 
     override fun longProjectClick(){
@@ -92,5 +92,9 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
         time = 0
 
         view.addNewTask(time)
+    }
+
+    override fun categoryClicked() {
+        view.showCategoryList();
     }
 }

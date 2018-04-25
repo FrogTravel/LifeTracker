@@ -29,7 +29,8 @@ public class TaskChildViewHolder extends ChildViewHolder implements View.OnLongC
 
     @Override
     public boolean onLongClick(View view) {
-        presenter.longTaskClick();
+        TextView titleChildTextView = view.findViewById(R.id.titleChildTextView);
+        presenter.longTaskClick(titleChildTextView.getText().toString());
 
         return true;
     }

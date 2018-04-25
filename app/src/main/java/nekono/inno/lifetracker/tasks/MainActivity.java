@@ -84,7 +84,15 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        startActivity(new Intent(this, ChartsActivity.class));
+        switch(item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(this, ChartsActivity.class));
+                break;
+            case R.id.action_category:
+                Log.d("CCCCCC", "category");
+                presenter.categoryClicked();
+                break;
+        }
         return true;
     }
 
@@ -180,8 +188,9 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     }
 
     @Override
-    public void showAddTask() {
+    public void showAddTask(long time) {
         Intent intent = new Intent(this, NewTaskActivity.class);
+        intent.putExtra("time", time);
         startActivity(intent);
     }
 
@@ -197,8 +206,10 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     }
 
     @Override
-    public void showMenuForTask(){
+    public void showMenuForTask(String taskName, long time){
         Intent intent = new Intent(this, TaskMenuActivity.class);
+        intent.putExtra("TaskName", taskName);
+        intent.putExtra("Time", time);
         startActivity(intent);
     }
 
@@ -220,6 +231,11 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     @Override
     public void updateData() {
         tasksExpandableAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCategoryList() {
+
     }
 
     @Override

@@ -18,24 +18,26 @@ public interface Tasks {
         void hideStopButton();
         void hideTimer();
         void showAddButton();
-        void showAddTask();
+        void showAddTask(long time);
         void addNewTask(long time);
-        void showMenuForTask();
+        void showMenuForTask(String taskName, long time);
         void setTimerIconToStop();
         void setTimerIconToPlay();
         void setTaskName(String name);
         void updateData();
+        void showCategoryList();
     }
 
     interface Presenter{
         void addTask();
         void startEmptyTask();
         List<ParentObject> getParentItemList();
-        void longTaskClick();
+        void longTaskClick(String taskName);
         void longProjectClick();
         void start();
         void onClickTask();
         void onFragmentClick();
         void onStopButton();
+        void categoryClicked();
     }
 }
