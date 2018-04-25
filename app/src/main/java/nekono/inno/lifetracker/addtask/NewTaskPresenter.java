@@ -26,7 +26,8 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
     }
 
     @Override
-    public void onPlayPressed(Context context) {
+    public void onPlayPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time) {
+        addAllInfo(taskName, category, project, comments, context, name, time);
         Toast.makeText(context, "Timer is started!",
                 Toast.LENGTH_LONG).show();
         //TODO start timer
@@ -39,6 +40,12 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
 
     @Override
     public void onAddPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time) {
+        addAllInfo(taskName, category, project, comments, context, name, time);
+        Toast.makeText(context, "Your task is created!", Toast.LENGTH_LONG).show();
+        editTaskView.close();
+    }
+
+    public void addAllInfo(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time) {
         Date finished = new Date(0);
         Duration duration = Duration.ofMillis(time);
         Model model = new Model();
@@ -47,25 +54,24 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
         if (taskName.getText().toString().equals("")) {
             task = new Task("Untitled", category.getText().toString(), state, comments.getText().toString(), Calendar.getInstance().getTime(),
                     finished, duration);
-        }
-        else {
+        } else {
             task = new Task(taskName.getText().toString(), category.getText().toString(), state, comments.getText().toString(), Calendar.getInstance().getTime(),
                     finished, duration);
         }
         if (projectIndex > -1) {
             task.setProject(projects.get(projectIndex));
             projects.get(projectIndex).addTask(task);
-        }
-        else {
+        } else {
             if (project.getText().toString().equals("")) {
-                task.setProject(new Project("Untitled"));
-            }
-            else {
-                task.setProject(new Project(project.getText().toString()));
+                Project newProject = new Project("Untitled");
+                task.setProject(newProject);
+                newProject.addTask(task);
+            } else {
+                Project newProject = new Project(project.getText().toString());
+                task.setProject(newProject);
+                newProject.addTask(task);
             }
         }
-        Toast.makeText(context, "Your task is created!", Toast.LENGTH_LONG).show();
-        editTaskView.close();
     }
 
     private int getProjectIndex(String name, List<Project> projects) {

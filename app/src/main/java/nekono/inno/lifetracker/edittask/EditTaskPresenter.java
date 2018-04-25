@@ -25,7 +25,8 @@ public class EditTaskPresenter implements NewEditTaskInterface.Presenter {
     }
 
     @Override
-    public void onPlayPressed(Context context) {
+    public void onPlayPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time) {
+        addAllInfo(taskName, category, project, comments, context, name, time);
         Toast.makeText(context, "Timer is started!",
                 Toast.LENGTH_LONG).show();
         //TODO start timer
@@ -38,8 +39,15 @@ public class EditTaskPresenter implements NewEditTaskInterface.Presenter {
 
     @Override
     public void onAddPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time) {
+        addAllInfo(taskName, category, project, comments, context, name, time);
+        Toast.makeText(context, "Your task is updated!", Toast.LENGTH_LONG).show();
+        editTaskView.close();
+    }
+
+    @Override
+    public void addAllInfo(TextView name, TextView category, TextView project, TextView comments, Context context, String taskName, long time) {
         Model model = new Model();
-        List<Task> tasks = model.getTasks();
+        List<Task> tasks = Model.getTasks();
         List<Project> projects = model.getProjects();
         int projectIndex = getProjectIndex(project.getText().toString(), projects);
         for (int i = 0; i < tasks.size(); i++) {
@@ -47,24 +55,28 @@ public class EditTaskPresenter implements NewEditTaskInterface.Presenter {
                 task = tasks.get(i);
             }
         }
-        if (taskName.getText().toString().equals("")) {
+        if (name.getText().toString().equals("")) {
             task.setName("Untitled");
-        }
-        else {
-            task.setName(taskName.getText().toString());
+        } else {
+            task.setName(name.getText().toString());
         }
         if (projectIndex > -1) {
             task.setProject(projects.get(projectIndex));
             projects.get(projectIndex).addTask(task);
-        }
-        else {
-            task.setProject(new Project(project.getText().toString()));
+        } else {
+            if (project.getText().toString().equals("")) {
+                Project newProject = new Project("Untitled");
+                task.setProject(newProject);
+                newProject.addTask(task);
+            } else {
+                Project newProject = new Project(project.getText().toString());
+                task.setProject(newProject);
+                newProject.addTask(task);
+            }
         }
         task.setCategory(category.getText().toString());
         task.setComments(comments.getText().toString());
         task.setTimeElapsed(Duration.ofMillis(time));
-        Toast.makeText(context, "Your task is updated!", Toast.LENGTH_LONG).show();
-        editTaskView.close();
     }
 
     private int getProjectIndex(String name, List<Project> projects) {
