@@ -19,8 +19,7 @@
         android:id="@+id/tasksRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/fragment_timer_place"
-        android:layout_margin="20dp"/>
+        android:layout_below="@+id/fragment_timer_place"/>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/right_labels"
@@ -59,7 +58,7 @@
         android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/right_labels"
+        android:layout_alignEnd="@+id/tasksRecyclerView"
         android:layout_below="@+id/fragment_timer_place"
         android:clickable="true"
         fab:srcCompat="@drawable/ic_done" />

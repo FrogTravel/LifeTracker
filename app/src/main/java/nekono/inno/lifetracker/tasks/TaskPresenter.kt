@@ -4,6 +4,10 @@ import android.util.Log
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject
 import nekono.inno.lifetracker.CountUpTimer
 import nekono.inno.lifetracker.model.Model
+import java.text.SimpleDateFormat
+import java.time.Duration
+import java.time.LocalTime
+import java.util.*
 
 /**
  * Created by ekaterina on 4/6/18.
@@ -22,7 +26,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
             override fun onTick(elapsedTime: Long) {
                 time += 1000
 
-                view.setTimerTime(toSeconds(time))//TODO transform to norm time view
+                view.setTimerTime(SimpleDateFormat("HH:mm:ss").format(Date(time)))
             }
         }
     }
@@ -30,7 +34,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
     override fun startEmptyTask() {
         if(!isRunning) {
             view.showTimer()
-
+            view.setTaskName("")
 
             timer.start()
             isRunning = true
@@ -66,10 +70,14 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
     override fun onFragmentClick() {
         if(isRunning){
             timer.stop()
+            view.setTimerIconToPlay()
         }else{
             timer.start()
+            view.setTimerIconToStop()
+
         }
         isRunning = !isRunning
+
     }
 
     override fun onStopButton() {
@@ -81,6 +89,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
 
         timer.stop()
         isRunning = false
+        time = 0
 
         view.addNewTask(time)
     }

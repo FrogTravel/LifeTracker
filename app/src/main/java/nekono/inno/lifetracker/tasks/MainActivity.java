@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 
@@ -19,10 +22,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import nekono.inno.lifetracker.ChartsActivity;
 import nekono.inno.lifetracker.addtask.NewTaskActivity;
 import nekono.inno.lifetracker.R;
+import nekono.inno.lifetracker.charts.ChartsActivity;
 import nekono.inno.lifetracker.expandableview.TasksExpandableAdapter;
+import nekono.inno.lifetracker.menus.TaskMenuActivity;
 
 /**
  * site: https://www.bignerdranch.com/blog/expand-a-recyclerview-in-four-steps/?utm_source=Android+Weekly&utm_campaign=8f0cc3ff1f-Android_Weekly_165&utm_medium=email&utm_term=0_4eb677ad19-8f0cc3ff1f-337834121
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     private Tasks.Presenter presenter;
     private TimerFragment timerFragment;
     private FragmentTransaction fragmentTransaction;
+    private TasksExpandableAdapter tasksExpandableAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,16 +95,19 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        TasksExpandableAdapter tasksExpandableAdapter = new TasksExpandableAdapter(this, presenter);
+        tasksExpandableAdapter = new TasksExpandableAdapter(this, presenter);
         tasksExpandableAdapter.setCustomParentAnimationViewId(R.id.parent_list_item_expand_arrow);
         tasksExpandableAdapter.setParentClickableViewAnimationDefaultDuration();
         tasksExpandableAdapter.setParentAndIconExpandOnClick(true);
 
         recyclerView.setAdapter(tasksExpandableAdapter);
+
     }
 
     @Override
     public void showTimer() {
+        Animation infragment = AnimationUtils.loadAnimation(this, R.anim.timer_in);
+
         View frag = findViewById(R.id.fragment_timer_place);
         frag.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,35 +116,52 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
             }
         });
         frag.setVisibility(View.VISIBLE);
+
+        frag.startAnimation(infragment);
     }
 
     @Override
-    public void setTimerTime(long elapsedTime) {
-        timerFragment.setTextElapsedTime(String.valueOf(elapsedTime));
+    public void setTimerTime(String elapsedTime) {
+        timerFragment.setTextElapsedTime(elapsedTime);
     }
 
     @Override
     public void hideAddButton() {
+        Animation outbutton = AnimationUtils.loadAnimation(this, R.anim.button_out);
+
         View view = findViewById(R.id.right_labels);
         view.setVisibility(View.GONE);
+        view.startAnimation(outbutton);
+
     }
 
     @Override
     public void showStopButton() {
+        Animation inbutton = AnimationUtils.loadAnimation(this, R.anim.button_in);
         View view = findViewById(R.id.stopButton);
         view.setVisibility(View.VISIBLE);
+        view.startAnimation(inbutton);
     }
 
     @Override
     public void hideStopButton() {
+        Animation outbutton = AnimationUtils.loadAnimation(this, R.anim.button_out);
+
         View view = findViewById(R.id.stopButton);
         view.setVisibility(View.GONE);
+        view.startAnimation(outbutton);
+
     }
 
     @Override
     public void hideTimer() {
+        Animation outfragment = AnimationUtils.loadAnimation(this, R.anim.timer_out);
+
         View frag = findViewById(R.id.fragment_timer_place);
         frag.setVisibility(View.GONE);
+
+        frag.startAnimation(outfragment);
+
     }
 
     @Override
@@ -148,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("StartButton", "1234512345");
 
                 presenter.startEmptyTask();
             }
@@ -174,6 +198,44 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
 
     @Override
     public void showMenuForTask(){
+        Intent intent = new Intent(this, TaskMenuActivity.class);
+        startActivity(intent);
+    }
 
+    @Override
+    public void setTimerIconToStop() {
+        timerFragment.setStopIcon();
+    }
+
+    @Override
+    public void setTimerIconToPlay() {
+        timerFragment.setPlayIcon();
+    }
+
+    @Override
+    public void setTaskName(String name) {
+        timerFragment.setTaskName(name);
+    }
+
+    @Override
+    public void updateData() {
+        tasksExpandableAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.d("ResumeTest", "Resume");
+        RecyclerView recyclerView = findViewById(R.id.tasksRecyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        tasksExpandableAdapter = new TasksExpandableAdapter(this, presenter);
+        tasksExpandableAdapter.setCustomParentAnimationViewId(R.id.parent_list_item_expand_arrow);
+        tasksExpandableAdapter.setParentClickableViewAnimationDefaultDuration();
+        tasksExpandableAdapter.setParentAndIconExpandOnClick(true);
+
+        recyclerView.setAdapter(tasksExpandableAdapter);
     }
 }
