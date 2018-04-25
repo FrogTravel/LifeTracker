@@ -16,6 +16,16 @@ public class Model {
         return Project.listAll(Project.class);
     }
 
+    public List<Task> getTasksByCategory(String category) {
+        List<Task> tasks = new ArrayList<>();
+        for (Task task :
+                getTasks()) {
+            if (task.getCategory().equals(category))
+                tasks.add(task);
+        }
+        return tasks;
+    }
+
     public List<ParentObject> getParentObjectProject(){
         List<ParentObject> temp = new ArrayList<>();
 

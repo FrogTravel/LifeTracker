@@ -13,20 +13,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".tasks.MainActivity">
+
+        </activity>
+
+        <activity android:name=".addtask.NewTaskActivity" />
+
+        <activity android:name=".TaskActionActivity" />
+
+        <activity android:name=".edittask.EditTaskActivity" />
+
+        <activity
+            android:name=".charts.ChartsActivity"
+            android:label="@string/title_activity_charts"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".addtask.NewTaskActivity"/>
-
-        <activity android:name=".TaskActionActivity"/>
-
-        <activity android:name=".edittask.EditTaskActivity"/>
-
-
         <activity android:name=".TaskMenuActivity" />
         <activity android:name=".MainMenuActivity" />
     </application>
