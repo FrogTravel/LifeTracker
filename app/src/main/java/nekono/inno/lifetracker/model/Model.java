@@ -1,8 +1,12 @@
 package nekono.inno.lifetracker.model;
+import android.util.ArraySet;
+
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Model {
     private List<Project> projects;
@@ -17,11 +21,11 @@ public class Model {
     }
 
     public List<String> getCategories() {
-        List<String> categories = new ArrayList<>();
+        Set<String> categories = new ArraySet<>();
         for (int i = 0; i < tasks.size(); i++) {
             categories.add(tasks.get(i).category);
         }
-        return categories;
+        return new ArrayList<>(categories);
     }
 
     public List<ParentObject> getParentObjectProject(){
