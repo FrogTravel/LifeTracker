@@ -15,12 +15,15 @@ import nekono.inno.lifetracker.tasks.Tasks;
 
 public class TaskChildViewHolder extends ChildViewHolder implements View.OnLongClickListener, View.OnClickListener{
     public TextView titleChildTextView;
+    public TextView timeTextView;
 
     private Tasks.Presenter presenter;
 
     public TaskChildViewHolder(View itemView, Tasks.Presenter presenter) {
         super(itemView);
         titleChildTextView = (TextView) itemView.findViewById(R.id.titleChildTextView);
+        timeTextView = itemView.findViewById(R.id.timeTextView);
+
         this.presenter = presenter;
         itemView.setOnLongClickListener(this);
         itemView.setOnClickListener(this);

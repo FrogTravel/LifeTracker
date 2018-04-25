@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter;
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import nekono.inno.lifetracker.R;
@@ -43,12 +45,13 @@ public class TasksExpandableAdapter extends ExpandableRecyclerAdapter<ProjectPar
     public void onBindParentViewHolder(ProjectParentViewHolder projectParentViewHolder, int i, Object o) {
         Project project = (Project) o;
         projectParentViewHolder.titleTextView.setText(project.getName());
-        projectParentViewHolder.descriptionTextView.setText("La la la");
     }
 
     @Override
     public void onBindChildViewHolder(TaskChildViewHolder taskChildViewHolder, int i, Object o) {
         Task task = (Task) o;
         taskChildViewHolder.titleChildTextView.setText(task.getName());
+        taskChildViewHolder.timeTextView.setText(new SimpleDateFormat("HH:mm:ss")
+                .format(new Date(task.getTimeElapsed().getSeconds() * 1000)));
     }
 }
