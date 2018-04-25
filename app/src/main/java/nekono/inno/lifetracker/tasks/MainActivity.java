@@ -26,6 +26,7 @@ import nekono.inno.lifetracker.addtask.NewTaskActivity;
 import nekono.inno.lifetracker.R;
 import nekono.inno.lifetracker.charts.ChartsActivity;
 import nekono.inno.lifetracker.expandableview.TasksExpandableAdapter;
+import nekono.inno.lifetracker.menus.CategoryActivity;
 import nekono.inno.lifetracker.menus.TaskMenuActivity;
 
 /**
@@ -235,17 +236,16 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
 
     @Override
     public void showCategoryList() {
-
+        Intent intent = new Intent(this, CategoryActivity.class);
+        startActivityForResult(intent, 1);//TODO change magic number
     }
 
     @Override
     public void onResume(){
         super.onResume();
-        Log.d("ResumeTest", "Resume");
         RecyclerView recyclerView = findViewById(R.id.tasksRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
 
         tasksExpandableAdapter = new TasksExpandableAdapter(this, presenter);
         tasksExpandableAdapter.setCustomParentAnimationViewId(R.id.parent_list_item_expand_arrow);
@@ -253,5 +253,15 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         tasksExpandableAdapter.setParentAndIconExpandOnClick(true);
 
         recyclerView.setAdapter(tasksExpandableAdapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 1:
+                Log.d("ResumeTest", data.getStringExtra("CatName"));
+
+                break;
+        }
     }
 }

@@ -19,6 +19,8 @@ public class Project extends SugarRecord implements ParentObject {
     }
 
     public String getName() {
+        if(name == null)
+            return "";
         return name;
     }
 

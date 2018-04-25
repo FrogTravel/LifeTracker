@@ -48,7 +48,7 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
         Task task = new Task();
         List<Task> tasks = model.getTasks();
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getName().equals(name)) {
+            if((tasks.get(i).getName() != null) && (tasks.get(i).getName().equals(name))) {
                 task = tasks.get(i);
             }
         }

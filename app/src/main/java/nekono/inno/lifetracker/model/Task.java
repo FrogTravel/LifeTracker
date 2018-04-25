@@ -52,6 +52,9 @@ public class Task extends SugarRecord{
     }
 
     public Project getProject() {
+        if(project == null){
+            return new Project();
+        }
         return project;
     }
 
