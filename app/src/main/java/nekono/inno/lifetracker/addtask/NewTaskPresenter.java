@@ -14,6 +14,7 @@ import java.util.List;
 import nekono.inno.lifetracker.model.Model;
 import nekono.inno.lifetracker.model.Project;
 import nekono.inno.lifetracker.model.Task;
+import nekono.inno.lifetracker.utils.Message;
 
 public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
 
@@ -40,6 +41,10 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
 
     @Override
     public void onAddPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name) {
+        onAddPressed(taskName, category, project, comments, context, name, new Message());
+    }
+
+    public void onAddPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, Message message) {
         Date finished = new Date(0);
         Duration duration = Duration.ofSeconds(0);
         Model model = new Model();
@@ -60,7 +65,8 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
         else {
             task.setProject(new Project(project.getText().toString()));
         }
-        Toast.makeText(context, "Your task is created!", Toast.LENGTH_LONG).show();
+        message.showMessage(context, "Your task is created!", Toast.LENGTH_LONG);
+//        Toast.makeText(context, "Your task is created!", Toast.LENGTH_LONG).show();
         editTaskView.close();
     }
 
