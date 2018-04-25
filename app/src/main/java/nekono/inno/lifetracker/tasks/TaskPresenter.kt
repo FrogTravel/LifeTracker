@@ -5,8 +5,6 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentObject
 import nekono.inno.lifetracker.CountUpTimer
 import nekono.inno.lifetracker.model.Model
 import java.text.SimpleDateFormat
-import java.time.Duration
-import java.time.LocalTime
 import java.util.*
 
 /**
@@ -18,6 +16,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
     private lateinit var timer: CountUpTimer
     private var time: Long = 0
     private var model = Model()
+    private var runningTask: String? = null
 
     override fun start(){
         view.hideStopButton()
@@ -46,7 +45,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
     }
 
     override fun addTask() {
-        view.showAddTask(time)
+        view.showAddingEmptyTask(time)
     }
 
     private fun toSeconds(time: Long) = time/1000
@@ -81,7 +80,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
     }
 
     override fun onStopButton() {
-        Log.d("ClickTest", "task Click")
+        Log.d("ClickTest", "Done button clicked")
 
         view.hideTimer()
         view.hideStopButton()
@@ -91,14 +90,22 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
         isRunning = false
         time = 0
 
-        view.addNewTask(time)
+        if(runningTask == null){//empty task
+            view.showAddingEmptyTask(time)
+        }else{
+            view.saveTask(time, runningTask)
+            runningTask = null
+        }
+
     }
 
     override fun categoryClicked() {
-        view.showCategoryList();
+        view.showCategoryList()
     }
 
     override fun startTask(taskName: String?) {
+        runningTask = taskName
+
         view.showTimer()
         view.setTaskName(taskName)
 

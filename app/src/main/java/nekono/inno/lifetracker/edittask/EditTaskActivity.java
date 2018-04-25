@@ -85,6 +85,11 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
+    public void startTimer() {
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addButton:

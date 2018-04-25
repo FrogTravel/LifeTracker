@@ -18,14 +18,14 @@ public interface Tasks {
         void hideStopButton();
         void hideTimer();
         void showAddButton();
-        void showAddTask(long time);
-        void addNewTask(long time);
         void showMenuForTask(String taskName, long time);
         void setTimerIconToStop();
         void setTimerIconToPlay();
         void setTaskName(String name);
         void updateData();
         void showCategoryList();
+        void saveTask(long time, String name);
+        void showAddingEmptyTask(long time);
     }
 
     interface Presenter{

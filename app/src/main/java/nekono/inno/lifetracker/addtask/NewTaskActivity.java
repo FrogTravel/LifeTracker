@@ -58,6 +58,7 @@ public class NewTaskActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void close() {
+        setResult(0);
         finish();
     }
 
