@@ -1,5 +1,6 @@
 package nekono.inno.lifetracker.addtask;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,16 @@ public class NewTaskActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void close() {
+        setResult(0);
         finish();
+    }
+
+    @Override
+    public void startTimer() {
+        Intent intent = new Intent();
+        intent.putExtra("task_name", taskName.getText().toString());
+        setResult(2, intent);
+        this.finish();
     }
 
     @Override

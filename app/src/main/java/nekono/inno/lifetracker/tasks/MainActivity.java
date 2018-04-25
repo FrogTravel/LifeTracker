@@ -60,16 +60,16 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         presenter.start();
         //ButterKnife.bind(this);
 
-        View view = findViewById(R.id.stopButton);
-        view.setOnClickListener(new View.OnClickListener() {
+        View doneButton = findViewById(R.id.stopButton);
+        doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.onStopButton();
             }
         });
 
-        View button = findViewById(R.id.start_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        View startButton = findViewById(R.id.start_button);
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.startEmptyTask();
@@ -187,24 +187,21 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
             }
         });
     }
-
-    @Override
-    public void showAddTask(long time) {
-        Intent intent = new Intent(this, NewTaskActivity.class);
-        intent.putExtra("time", time);
-        startActivity(intent);
-    }
+//
+//    @Override
+//    public void showAddTask(long time) {
+//        Intent intent = new Intent(this, NewTaskActivity.class);
+//        intent.putExtra("time", time);
+//        startActivityForResult(intent, 2);
+//    }
 
     public void onPlus(View view) {
+        Log.d("ButtonMess", "Adding New Task");
+
         presenter.addTask();
     }
 
-    @Override
-    public void addNewTask(long time){
-        Intent intent = new Intent(this, NewTaskActivity.class);
-        intent.putExtra("NewTaskTime", time);
-        startActivityForResult(intent, 2);
-    }
+
 
     @Override
     public void showMenuForTask(String taskName, long time){
@@ -241,6 +238,18 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     }
 
     @Override
+    public void saveTask(long time, String name) {
+
+    }
+
+    @Override
+    public void showAddingEmptyTask(long time) {
+        Intent intent = new Intent(this, NewTaskActivity.class);
+        intent.putExtra("time", time);
+        startActivityForResult(intent, 2);
+    }
+
+    @Override
     public void onResume(){
         super.onResume();
         RecyclerView recyclerView = findViewById(R.id.tasksRecyclerView);
@@ -257,15 +266,17 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
+        switch (resultCode){
             case 1:
-                Log.d("ActivityResultTest", data.getStringExtra("CatName"));
+                Log.d("ActivityResultTest", "Category Name: " + data.getStringExtra("CatName"));
 
                 break;
             case 2:
                 Log.d("ActivityResultTest", "StartTimer");
                 String taskName = data.getStringExtra("task_name");
                 presenter.startTask(taskName);
+                break;
+            default:
                 break;
         }
     }

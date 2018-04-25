@@ -10,6 +10,7 @@ public interface NewEditTaskInterface {
 
         void setItems();
         void close();
+        void startTimer();
     }
 
     interface Presenter {

@@ -27,10 +27,10 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
 
     @Override
     public void onPlayPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time) {
+        editTaskView.startTimer();
         addAllInfo(taskName, category, project, comments, context, name, time);
         Toast.makeText(context, "Timer is started!",
                 Toast.LENGTH_LONG).show();
-        //TODO start timer
     }
 
     @Override
@@ -54,14 +54,16 @@ public class NewTaskPresenter implements NewEditTaskInterface.Presenter {
         if (taskName.getText().toString().equals("")) {
             task = new Task("Untitled", category.getText().toString(), state, comments.getText().toString(), Calendar.getInstance().getTime(),
                     finished, duration);
-        } else {
+        }
+        else {
             task = new Task(taskName.getText().toString(), category.getText().toString(), state, comments.getText().toString(), Calendar.getInstance().getTime(),
                     finished, duration);
         }
         if (projectIndex > -1) {
             task.setProject(projects.get(projectIndex));
             projects.get(projectIndex).addTask(task);
-        } else {
+        }
+        else {
             if (project.getText().toString().equals("")) {
                 Project newProject = new Project("Untitled");
                 task.setProject(newProject);
