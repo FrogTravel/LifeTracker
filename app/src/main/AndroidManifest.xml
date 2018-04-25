@@ -27,9 +27,9 @@
         <activity android:name=".edittask.EditTaskActivity"/>
 
 
-        <activity android:name=".TaskMenuActivity" />
+        <activity android:name=".menus.TaskMenuActivity"/>
         <activity android:name=".MainMenuActivity" />
-        <activity android:name=".ChartsActivity"
+        <activity android:name=".charts.ChartsActivity"
             android:label="@string/title_activity_charts"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

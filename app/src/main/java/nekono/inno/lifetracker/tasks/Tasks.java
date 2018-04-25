@@ -12,7 +12,7 @@ public interface Tasks {
     interface View{
         void showTasks(List<ParentObject> parentObjectList);
         void showTimer();
-        void setTimerTime(long elapsedTime);
+        void setTimerTime(String elapsedTime);
         void hideAddButton();
         void showStopButton();
         void hideStopButton();
@@ -21,6 +21,10 @@ public interface Tasks {
         void showAddTask();
         void addNewTask(long time);
         void showMenuForTask();
+        void setTimerIconToStop();
+        void setTimerIconToPlay();
+        void setTaskName(String name);
+        void updateData();
     }
 
     interface Presenter{
