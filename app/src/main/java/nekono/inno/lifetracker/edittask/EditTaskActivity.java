@@ -16,7 +16,7 @@ import nekono.inno.lifetracker.addtask.NewTaskPresenter;
 
 public class EditTaskActivity extends AppCompatActivity implements View.OnClickListener, NewEditTaskInterface.View, AdapterView.OnItemSelectedListener {
 
-    private TextView taskName;
+    private TextView name;
     private TextView category;
     private TextView project;
     private TextView comments;
@@ -27,12 +27,16 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
 
     private NewEditTaskInterface.Presenter presenter;
 
+    private String taskName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_task);
 
-        taskName = findViewById(R.id.taskName);
+        taskName = getIntent().getStringExtra("task_name");
+
+        name = findViewById(R.id.taskName);
         category = findViewById(R.id.category);
         project = findViewById(R.id.project);
         comments = findViewById(R.id.comments);
@@ -62,7 +66,7 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addButton:
-                presenter.onAddPressed(taskName, category, project, comments, this);
+                presenter.onAddPressed(name, category, project, comments, this, taskName);
                 break;
             case R.id.playButton:
                 presenter.onPlayPressed(this);

@@ -60,7 +60,7 @@ public class NewTaskActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addButton:
-                presenter.onAddPressed(taskName, category, project, comments, this);
+                presenter.onAddPressed(taskName, category, project, comments, this, "");
                 break;
             case R.id.playButton:
                 presenter.onPlayPressed(this);
