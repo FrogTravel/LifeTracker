@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     public void addNewTask(long time){
         Intent intent = new Intent(this, NewTaskActivity.class);
         intent.putExtra("NewTaskTime", time);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
 
     @Override
@@ -259,8 +259,13 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
             case 1:
-                Log.d("ResumeTest", data.getStringExtra("CatName"));
+                Log.d("ActivityResultTest", data.getStringExtra("CatName"));
 
+                break;
+            case 2:
+                Log.d("ActivityResultTest", "StartTimer");
+                String taskName = data.getStringExtra("task_name");
+                presenter.startTask(taskName);
                 break;
         }
     }

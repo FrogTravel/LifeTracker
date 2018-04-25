@@ -97,4 +97,16 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
     override fun categoryClicked() {
         view.showCategoryList();
     }
+
+    override fun startTask(taskName: String?) {
+        view.showTimer()
+        view.setTaskName(taskName)
+
+        timer.start()
+
+        isRunning = true
+
+        view.hideAddButton()
+        view.showStopButton()
+    }
 }

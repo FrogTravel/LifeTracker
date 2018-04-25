@@ -39,5 +39,6 @@ public interface Tasks {
         void onFragmentClick();
         void onStopButton();
         void categoryClicked();
+        void startTask(String taskName);
     }
 }
