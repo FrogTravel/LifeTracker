@@ -90,7 +90,7 @@
         android:layout_width="385dp"
         android:layout_height="wrap_content"
         android:background="@color/addButton"
-        android:text="ADD"
+        android:text="SAVE"
         android:clickable="true"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

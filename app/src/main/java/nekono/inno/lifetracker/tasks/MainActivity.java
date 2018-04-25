@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         frag.setVisibility(View.GONE);
 
         presenter.start();
-        //ButterKnife.bind(this);
 
         View doneButton = findViewById(R.id.stopButton);
         doneButton.setOnClickListener(new View.OnClickListener() {

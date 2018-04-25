@@ -17,7 +17,7 @@ public interface NewEditTaskInterface {
 
         void onPlayPressed(TextView taskName, TextView category, TextView project, TextView comments, Context context, String name, long time);
 
-        void onItemSelected(int position, AdapterView<?> parent);
+        void onItemSelected(int posonAddPressedition, AdapterView<?> parent);
 
         void onAddPressed(TextView name, TextView category, TextView project, TextView comments, Context context, String taskName, long time);
 

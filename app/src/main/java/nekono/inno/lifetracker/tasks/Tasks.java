@@ -35,7 +35,7 @@ public interface Tasks {
         void longTaskClick(String taskName);
         void longProjectClick();
         void start();
-        void onClickTask();
+        void onClickTask(String taskName);
         void onFragmentClick();
         void onStopButton();
         void categoryClicked();

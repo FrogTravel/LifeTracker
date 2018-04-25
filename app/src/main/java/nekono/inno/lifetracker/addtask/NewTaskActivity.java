@@ -77,7 +77,7 @@ public class NewTaskActivity extends AppCompatActivity implements View.OnClickLi
                 presenter.onAddPressed(taskName, category, project, comments, this, "", time);
                 break;
             case R.id.playButton:
-                presenter.onPlayPressed(this);
+                presenter.onPlayPressed(taskName, category, project, comments, this, "", time);
         }
     }
 

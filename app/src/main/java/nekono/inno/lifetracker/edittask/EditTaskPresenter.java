@@ -51,7 +51,7 @@ public class EditTaskPresenter implements NewEditTaskInterface.Presenter {
         List<Project> projects = model.getProjects();
         int projectIndex = getProjectIndex(project.getText().toString(), projects);
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getName().equals(name)) {
+            if ((task.getName() != null) && (tasks.get(i).getName().equals(name))) {
                 task = tasks.get(i);
             }
         }

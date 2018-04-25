@@ -62,8 +62,9 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
 
     }
 
-    override fun onClickTask() {
+    override fun onClickTask(taskName: String) {
         Log.d("ClickTest", "task Click")
+        startTask(taskName)
     }
 
     override fun onFragmentClick() {

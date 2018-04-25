@@ -3,6 +3,7 @@ package nekono.inno.lifetracker.edittask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,7 +49,7 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
         Task task = new Task();
         List<Task> tasks = model.getTasks();
         for (int i = 0; i < tasks.size(); i++) {
-            if((tasks.get(i).getName() != null) && (tasks.get(i).getName().equals(name))) {
+            if((tasks.get(i).getName() != null) && (tasks.get(i).getName().equals(taskName))) {
                 task = tasks.get(i);
             }
         }
@@ -70,7 +71,7 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
         playButton.setOnClickListener(this);
         states.setOnItemSelectedListener(this);
 
-        presenter = new NewTaskPresenter(this);
+        presenter = new EditTaskPresenter(this);
     }
 
     public void setItems() {
@@ -93,10 +94,16 @@ public class EditTaskActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addButton:
+                Log.d("ButtonMess", "Saving after editing task");
+
                 presenter.onAddPressed(name, category, project, comments, this, taskName, time);
+
                 break;
             case R.id.playButton:
-                presenter.onPlayPressed(this);
+                Log.d("ButtonMess", "Start timer from editing screen");
+
+                presenter.onPlayPressed(name, category, project, comments, this, taskName, time);
+                break;
         }
     }
 
