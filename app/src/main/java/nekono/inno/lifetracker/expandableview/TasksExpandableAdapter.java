@@ -51,7 +51,7 @@ public class TasksExpandableAdapter extends ExpandableRecyclerAdapter<ProjectPar
     public void onBindChildViewHolder(TaskChildViewHolder taskChildViewHolder, int i, Object o) {
         Task task = (Task) o;
         taskChildViewHolder.titleChildTextView.setText(task.getName());
-        taskChildViewHolder.timeTextView.setText(new SimpleDateFormat("HH:mm:ss")
+        taskChildViewHolder.timeTextView.setText(new SimpleDateFormat("mm:ss")
                 .format(new Date(task.getTimeElapsed().getSeconds() * 1000)));
     }
 }

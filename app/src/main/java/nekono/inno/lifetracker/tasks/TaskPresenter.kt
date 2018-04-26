@@ -25,7 +25,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
             override fun onTick(elapsedTime: Long) {
                 time += 1000
 
-                view.setTimerTime(SimpleDateFormat("HH:mm:ss").format(Date(time)))
+                view.setTimerTime(SimpleDateFormat("mm:ss").format(Date(time)))
             }
         }
     }
