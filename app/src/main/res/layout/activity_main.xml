@@ -13,8 +13,6 @@
         android:name="nekono.inno.lifetracker.tasks.TimerFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-
-
     </fragment>
 
 
@@ -22,11 +20,11 @@
         android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignBottom="@id/fragment_timer_place"
-
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:clickable="true"
-        fab:srcCompat="@drawable/ic_done"/>
+        fab:srcCompat="@drawable/ic_done"
+        android:layout_margin="10dp"/>
 
 
     <android.support.v7.widget.RecyclerView
@@ -68,6 +66,11 @@
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
+    <ListView
+        android:id="@+id/categoryTasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 
 </RelativeLayout>

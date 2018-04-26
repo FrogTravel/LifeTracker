@@ -26,6 +26,7 @@ public interface Tasks {
         void showCategoryList();
         void saveTask(long time, String name);
         void showAddingEmptyTask(long time);
+        void showCategory(String categoryName);
     }
 
     interface Presenter{

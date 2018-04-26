@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ListView;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     private TimerFragment timerFragment;
     private FragmentTransaction fragmentTransaction;
     private TasksExpandableAdapter tasksExpandableAdapter;
+    private boolean isListActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         timerFragment = new TimerFragment();
-        // fragmentTransaction.add(R.id.fragment_timer_place, timerFragment);
         fragmentTransaction
                 .add(R.id.fragment_timer_place, timerFragment)
                 .commit();
@@ -98,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
 
     @Override
     public void showTasks(@NotNull List<ParentObject> parentObjectList) {
+        ListView listView = findViewById(R.id.categoryTasks);
+        listView.setVisibility(View.GONE);
+
         RecyclerView recyclerView = findViewById(R.id.tasksRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -174,8 +178,11 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
 
     @Override
     public void showAddButton() {
+        Animation outbutton = AnimationUtils.loadAnimation(this, R.anim.button_out);
+
         View view = findViewById(R.id.right_labels);
         view.setVisibility(View.VISIBLE);
+        view.startAnimation(outbutton);
 
         View button = findViewById(R.id.start_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -186,20 +193,12 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
             }
         });
     }
-//
-//    @Override
-//    public void showAddTask(long time) {
-//        Intent intent = new Intent(this, NewTaskActivity.class);
-//        intent.putExtra("time", time);
-//        startActivityForResult(intent, 2);
-//    }
 
     public void onPlus(View view) {
         Log.d("ButtonMess", "Adding New Task");
 
         presenter.addTask();
     }
-
 
 
     @Override
@@ -240,6 +239,20 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
     public void saveTask(long time, String name) {
         Task task = Model.getTasksByName(name).get(0);
         task.setTimeElapsed(task.getTimeElapsed().plusMillis(time));
+
+        RecyclerView recyclerView = findViewById(R.id.tasksRecyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        tasksExpandableAdapter = new TasksExpandableAdapter(this, presenter);
+        tasksExpandableAdapter.setCustomParentAnimationViewId(R.id.parent_list_item_expand_arrow);
+        tasksExpandableAdapter.setParentClickableViewAnimationDefaultDuration();
+        tasksExpandableAdapter.setParentAndIconExpandOnClick(true);
+
+        recyclerView.setAdapter(tasksExpandableAdapter);
+
+        ListView listView = findViewById(R.id.categoryTasks);
+        listView.setVisibility(View.GONE);
     }
 
     @Override
@@ -247,6 +260,23 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         Intent intent = new Intent(this, NewTaskActivity.class);
         intent.putExtra("time", time);
         startActivityForResult(intent, 2);
+    }
+
+    @Override
+    public void showCategory(String categoryName) {
+        RecyclerView recyclerView = findViewById(R.id.tasksRecyclerView);
+        recyclerView.setVisibility(View.GONE);
+
+        ListView listView = findViewById(R.id.categoryTasks);
+        listView.setVisibility(View.VISIBLE);
+
+        isListActive = true;
+
+        List<Task> tasks = Model.getTasksByCategory(categoryName);
+
+        TasksByCategoryArrayAdapter adapter = new TasksByCategoryArrayAdapter(this, android.R.layout.simple_list_item_1, tasks);
+        listView.setAdapter(adapter);
+
     }
 
     @Override
@@ -269,7 +299,8 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
         switch (resultCode){
             case 1:
                 Log.d("ActivityResultTest", "Category Name: " + data.getStringExtra("CatName"));
-
+                setTitle(data.getStringExtra("CatName"));
+                showCategory(data.getStringExtra("CatName"));
                 break;
             case 2:
                 Log.d("ActivityResultTest", "StartTimer");
@@ -278,6 +309,30 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
                 break;
             default:
                 break;
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(isListActive){
+            isListActive = false;
+            setTitle(R.string.app_name);
+            RecyclerView recyclerView = findViewById(R.id.tasksRecyclerView);
+            recyclerView.setVisibility(View.VISIBLE);
+
+            ListView listView = findViewById(R.id.categoryTasks);
+            listView.setVisibility(View.GONE);
+
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(layoutManager);
+
+            tasksExpandableAdapter = new TasksExpandableAdapter(this, presenter);
+            tasksExpandableAdapter.setCustomParentAnimationViewId(R.id.parent_list_item_expand_arrow);
+            tasksExpandableAdapter.setParentClickableViewAnimationDefaultDuration();
+            tasksExpandableAdapter.setParentAndIconExpandOnClick(true);
+
+            recyclerView.setAdapter(tasksExpandableAdapter);
         }
     }
 }

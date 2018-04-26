@@ -109,4 +109,9 @@ public class Task extends SugarRecord{
         this.comments = comments;
         save();
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

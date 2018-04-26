@@ -1,6 +1,8 @@
 package nekono.inno.lifetracker.menus;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -11,6 +13,7 @@ import android.view.WindowManager;
 
 import nekono.inno.lifetracker.R;
 import nekono.inno.lifetracker.edittask.EditTaskActivity;
+import nekono.inno.lifetracker.model.Model;
 
 public class TaskMenuActivity extends AppCompatActivity {
     private String taskName;
@@ -34,10 +37,21 @@ public class TaskMenuActivity extends AppCompatActivity {
 
 
     public void onTrash(View view){
-
-    }
-
-    public void onLabel(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_confirm)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // FIRE ZE MISSILES!
+                        Model.getTasksByName(taskName).get(0).delete();
+                        finishActivity();
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        finishActivity();
+                    }
+                }).create().show();
 
     }
 
@@ -49,6 +63,10 @@ public class TaskMenuActivity extends AppCompatActivity {
         this.finish();
 
         startActivity(intent);
+    }
+
+    public void finishActivity(){
+        this.finish();
     }
 
 }

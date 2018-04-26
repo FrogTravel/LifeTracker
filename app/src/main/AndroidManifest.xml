@@ -34,7 +34,7 @@
             android:label="@string/title_activity_charts"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
-        <activity android:name=".menus.CategoryActivity"/>
+        <activity android:name=".menus.CategoryActivity" android:theme="@style/Theme.Floating"/>
     </application>
 
 </manifest>
