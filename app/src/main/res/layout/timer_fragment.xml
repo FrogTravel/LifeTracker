@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/taskNameTextView"
@@ -13,22 +14,28 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="63dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"/>
 
     <TextView
         android:id="@+id/elapsedTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/taskNameTextView"
-        android:layout_centerVertical="true"
-        android:text="TextView" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="40dp"/>
 
     <ImageView
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+
         app:srcCompat="@drawable/ic_pause"
         android:background="@android:color/transparent"/>
 
