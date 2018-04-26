@@ -38,6 +38,7 @@ import java.util.List;
 
 import nekono.inno.lifetracker.R;
 import nekono.inno.lifetracker.model.Model;
+import nekono.inno.lifetracker.model.Project;
 import nekono.inno.lifetracker.model.Task;
 
 public class ChartsActivity extends AppCompatActivity {
@@ -64,7 +65,12 @@ public class ChartsActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, 3, 22);
         Date date = calendar.getTime();
-        new Task("name1", "category1", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(1));
+        Project project = new Project("project1");
+        Task task = new Task("name1", "category1", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(1));
+        task.setProject(project);
+        project = Model.getProjects().get(0);
+        project = project.getTasks().get(0).getProject();
+        String name = project.getName();
         calendar.set(2018, 3, 22);
         new Task("name2", "category1", "", "", calendar.getTime(), calendar.getTime(), Duration.ofHours(2));
         calendar.set(2018, 3, 24);
