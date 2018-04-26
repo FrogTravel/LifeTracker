@@ -50,7 +50,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
 
     private fun toSeconds(time: Long) = time/1000
 
-    override fun getParentItemList(): List<ParentObject> = model.projects
+    override fun getParentItemList(): List<ParentObject> = Model.getProjects()
 
     override fun longTaskClick(taskName: String){
         Log.d("ClickTest", "Long task Click")
@@ -89,7 +89,6 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
 
         timer.stop()
         isRunning = false
-        time = 0
 
         if(runningTask == null){//empty task
             view.showAddingEmptyTask(time)
@@ -97,6 +96,7 @@ class TaskPresenter(val view: Tasks.View) : Tasks.Presenter{
             view.saveTask(time, runningTask)
             runningTask = null
         }
+        time = 0
 
     }
 

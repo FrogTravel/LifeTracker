@@ -17,7 +17,7 @@ public class Task extends SugarRecord{
     long dateCompleted;
     SimpleDateFormat df;
     long timeElapsed;
-    Project project = null;
+    Project project;
 
     public Task(){
         df = new SimpleDateFormat("dd-MM-yyyy");
@@ -41,6 +41,7 @@ public class Task extends SugarRecord{
 
     public void setDateStarted(Date dateStarted) {
         this.dateStarted = dateStarted.getTime();
+        save();
     }
 
     public Date getDateCompleted() {
@@ -49,6 +50,7 @@ public class Task extends SugarRecord{
 
     public void setDateCompleted(Date dateCompleted) {
         this.dateCompleted = dateCompleted.getTime();
+        save();
     }
 
     public Project getProject() {
@@ -64,6 +66,7 @@ public class Task extends SugarRecord{
 
     public void setTimeElapsed(Duration timeElapsed) {
         this.timeElapsed = timeElapsed.getSeconds();
+        save();
     }
 
     public String getName() {

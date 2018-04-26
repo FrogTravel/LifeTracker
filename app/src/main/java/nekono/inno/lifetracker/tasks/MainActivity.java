@@ -13,21 +13,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
-
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import nekono.inno.lifetracker.addtask.NewTaskActivity;
 import nekono.inno.lifetracker.R;
+import nekono.inno.lifetracker.addtask.NewTaskActivity;
 import nekono.inno.lifetracker.charts.ChartsActivity;
 import nekono.inno.lifetracker.expandableview.TasksExpandableAdapter;
 import nekono.inno.lifetracker.menus.CategoryActivity;
 import nekono.inno.lifetracker.menus.TaskMenuActivity;
+import nekono.inno.lifetracker.model.Model;
+import nekono.inno.lifetracker.model.Task;
 
 /**
  * site: https://www.bignerdranch.com/blog/expand-a-recyclerview-in-four-steps/?utm_source=Android+Weekly&utm_campaign=8f0cc3ff1f-Android_Weekly_165&utm_medium=email&utm_term=0_4eb677ad19-8f0cc3ff1f-337834121
@@ -238,7 +238,8 @@ public class MainActivity extends AppCompatActivity implements Tasks.View {
 
     @Override
     public void saveTask(long time, String name) {
-
+        Task task = Model.getTasksByName(name).get(0);
+        task.setTimeElapsed(task.getTimeElapsed().plusMillis(time));
     }
 
     @Override

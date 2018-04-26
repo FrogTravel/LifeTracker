@@ -15,16 +15,28 @@ public class Model {
         return Task.listAll(Task.class);
     }
 
-    public List<Project> getProjects() {
+    public static List<Project> getProjects() {
         return Project.listAll(Project.class);
     }
 
-    public List<Task> getTasksByCategory(String category) {
+    public static List<Task> getTasksByCategory(String category) {
         List<Task> tasks = new ArrayList<>();
         for (Task task :
                 getTasks()) {
-            if (task.getCategory().equals(category))
-                tasks.add(task);
+            if (task.getCategory() != null)
+                if (task.getCategory().equals(category))
+                    tasks.add(task);
+        }
+        return tasks;
+    }
+
+    public static List<Task> getTasksByName(String name) {
+        List<Task> tasks = new ArrayList<>();
+        for (Task task :
+                getTasks()) {
+            if (task.getName() != null)
+                if (task.getName().equals(name))
+                    tasks.add(task);
         }
         return tasks;
     }
