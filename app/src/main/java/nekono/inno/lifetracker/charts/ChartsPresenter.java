@@ -38,6 +38,8 @@ public class ChartsPresenter {
     }
 
     public static boolean isDateInCurrentWeek(Date date) {
+        if (date == null)
+            return false;
         Calendar currentCalendar = Calendar.getInstance();
         int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
         int year = currentCalendar.get(Calendar.YEAR);
